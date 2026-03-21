@@ -15,81 +15,38 @@
             --teal-dark: #0d9488;
         }
 
-        body {
-            font-family: 'Poppins', sans-serif;
-            overflow-x: hidden;
-        }
-
-        h1, h2, h3, .font-montserrat {
-            font-family: 'Montserrat', sans-serif;
-        }
+        body { font-family: 'Poppins', sans-serif; overflow-x: hidden; scroll-behavior: smooth; }
+        h1, h2, h3, .font-montserrat { font-family: 'Montserrat', sans-serif; }
 
         /* Nav Transition */
-        .nav-link {
-            position: relative;
-            transition: color 0.3s;
-        }
+        .nav-link { position: relative; cursor: pointer; transition: color 0.3s; }
         .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -4px;
-            left: 0;
-            background-color: var(--accent-orange);
+            content: ''; position: absolute; width: 0; height: 2px;
+            bottom: -4px; left: 0; background-color: var(--accent-orange);
             transition: width 0.3s;
         }
-        .nav-link:hover::after {
-            width: 100%;
+        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+
+        /* Page Transitions */
+        .page-section { display: none; animation: fadeIn 0.5s ease-in-out; }
+        .page-section.active { display: block; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Hero Slider Anim */
-        .slide {
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-            position: absolute;
-            inset: 0;
-        }
-        .slide.active {
-            opacity: 1;
-            z-index: 10;
-        }
-        .slide-content {
-            transform: translateY(30px);
-            opacity: 0;
-            transition: all 0.8s ease-out 0.5s;
-        }
-        .slide.active .slide-content {
-            transform: translateY(0);
-            opacity: 1;
-        }
+        /* Hero Slider */
+        .slide { opacity: 0; transition: opacity 1s ease-in-out; position: absolute; inset: 0; }
+        .slide.active { opacity: 1; z-index: 10; }
+        .slide-content { transform: translateY(30px); opacity: 0; transition: all 0.8s ease-out 0.5s; }
+        .slide.active .slide-content { transform: translateY(0); opacity: 1; }
 
-        /* Product Card Hover */
-        .product-card .overlay {
-            background: rgba(13, 148, 136, 0.8);
-            opacity: 0;
-            transition: all 0.4s ease;
-        }
-        .product-card:hover .overlay {
-            opacity: 1;
-        }
+        /* Product Card */
+        .product-card .overlay { background: rgba(13, 148, 136, 0.9); opacity: 0; transition: all 0.4s ease; }
+        .product-card:hover .overlay { opacity: 1; }
 
-        /* Sidebar Transition */
-        #sidebar {
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: var(--primary-purple);
-            border-radius: 10px;
-        }
+        #sidebar { transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
     </style>
 </head>
 <body class="bg-white">
@@ -104,392 +61,380 @@
             <div class="flex gap-4">
                 <a href="#" class="hover:text-orange-500"><i class="fab fa-facebook-f"></i></a>
                 <a href="#" class="hover:text-orange-500"><i class="fab fa-instagram"></i></a>
-                <a href="#" class="hover:text-orange-500"><i class="fab fa-twitter"></i></a>
             </div>
         </div>
     </div>
 
-    <!-- Main Navigation -->
+    <!-- Navigation -->
     <header class="bg-white sticky top-0 z-[100] shadow-sm">
         <div class="container mx-auto px-4 lg:px-6 py-4 flex justify-between items-center">
-            <!-- Logo -->
-            <a href="#" class="flex items-center gap-2 group">
+            <a href="javascript:void(0)" onclick="navigateTo('home')" class="flex items-center gap-2 group">
                 <div class="bg-purple-900 text-white p-2 rounded-lg group-hover:bg-orange-500 transition-colors">
                     <i class="fas fa-cut text-xl"></i>
                 </div>
                 <span class="text-2xl font-extrabold text-purple-950 tracking-tight font-montserrat">Kedai<span class="text-orange-500">Jahit</span></span>
             </a>
 
-            <!-- Desktop Nav -->
             <nav class="hidden lg:flex items-center space-x-8 font-semibold text-gray-700 uppercase text-sm tracking-wider">
-                <a href="#" class="nav-link text-orange-500">Home</a>
-                <a href="#" class="nav-link">Tentang Kami</a>
+                <a onclick="navigateTo('home')" class="nav-link active" id="link-home">Home</a>
+                <a onclick="navigateTo('about')" class="nav-link" id="link-about">Tentang Kami</a>
                 <div class="relative group">
-                    <button class="nav-link flex items-center gap-1">
+                    <button class="nav-link flex items-center gap-1" onclick="navigateTo('products')">
                         Produk & Layanan <i class="fas fa-chevron-down text-[10px] ml-1"></i>
                     </button>
-                    <!-- Dropdown -->
-                    <div class="absolute top-full left-0 mt-4 w-56 bg-white shadow-xl border-t-4 border-orange-500 rounded-b-lg py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all transform group-hover:translate-y-0 translate-y-2">
-                        <a href="#" class="block px-6 py-2 hover:bg-gray-50 hover:text-orange-500 border-b border-gray-100">Konveksi T-Shirt</a>
-                        <a href="#" class="block px-6 py-2 hover:bg-gray-50 hover:text-orange-500 border-b border-gray-100">Jaket & Hoodie</a>
-                        <a href="#" class="block px-6 py-2 hover:bg-gray-50 hover:text-orange-500 border-b border-gray-100">Seragam Kantor</a>
-                        <a href="#" class="block px-6 py-2 hover:bg-gray-50 hover:text-orange-500 border-b border-gray-100">Tas Custom</a>
-                        <a href="#" class="block px-4 py-2 hover:bg-gray-50 hover:text-orange-500">Busana Muslim</a>
+                    <div class="absolute top-full left-0 mt-4 w-56 bg-white shadow-xl border-t-4 border-orange-500 rounded-b-lg py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
+                        <a onclick="viewProduct('Kaos & Sablon')" class="block px-6 py-2 hover:bg-gray-50 hover:text-orange-500 border-b border-gray-100 cursor-pointer">Konveksi T-Shirt</a>
+                        <a onclick="viewProduct('Jaket & Hoodie')" class="block px-6 py-2 hover:bg-gray-50 hover:text-orange-500 border-b border-gray-100 cursor-pointer">Jaket & Hoodie</a>
+                        <a onclick="viewProduct('Seragam Kantor')" class="block px-6 py-2 hover:bg-gray-50 hover:text-orange-500 border-b border-gray-100 cursor-pointer">Seragam Kantor</a>
                     </div>
                 </div>
-                <a href="#" class="nav-link">Hubungi Kami</a>
+                <a onclick="navigateTo('contact')" class="nav-link" id="link-contact">Hubungi Kami</a>
             </nav>
 
-            <!-- Action Buttons -->
             <div class="flex items-center gap-3">
-                <button onclick="toggleSearch()" class="p-2 text-gray-600 hover:text-orange-500 transition-colors">
-                    <i class="fas fa-search text-lg"></i>
-                </button>
-                <button onclick="toggleSidebar()" class="bg-orange-500 text-white w-10 h-10 rounded-lg flex items-center justify-center hover:bg-orange-600 shadow-lg shadow-orange-500/30 transition-all">
+                <button onclick="toggleSearch()" class="p-2 text-gray-600 hover:text-orange-500"><i class="fas fa-search text-lg"></i></button>
+                <button onclick="toggleSidebar()" class="bg-orange-500 text-white w-10 h-10 rounded-lg flex items-center justify-center hover:bg-orange-600 shadow-lg transition-all">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
         </div>
     </header>
 
-    <!-- Hero Section with Slider -->
-    <section class="relative h-[85vh] md:h-[90vh] bg-black overflow-hidden">
-        <!-- Slides -->
-        <div id="hero-slider" class="h-full">
-            <div class="slide active">
-                <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=2070" class="w-full h-full object-cover opacity-50" alt="Banner 1">
-                <div class="absolute inset-0 flex items-center justify-center md:justify-start px-6 md:px-20 lg:px-32 text-center md:text-left">
-                    <div class="slide-content max-w-3xl">
-                        <span class="inline-block text-orange-500 font-bold tracking-widest uppercase mb-4 text-sm md:text-base border-l-4 border-orange-500 pl-3">Your Brand Name</span>
-                        <h1 class="text-4xl md:text-7xl font-extrabold text-white mb-6 leading-tight">Konveksi <br class="hidden md:block"> <span class="text-teal-400">Terlengkap,</span> Berkualitas</h1>
-                        <p class="text-gray-300 text-base md:text-xl mb-10 max-w-xl font-light leading-relaxed">Kami melayani jasa konveksi dengan standar kualitas tinggi, mulai dari pemilihan bahan hingga finishing detail yang sempurna.</p>
-                        <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-                            <a href="#" class="bg-teal-600 hover:bg-teal-700 text-white px-10 py-4 rounded-full font-bold transition transform hover:scale-105 shadow-xl uppercase tracking-tighter">Produk Kami</a>
-                            <a href="#" class="bg-orange-500 hover:bg-orange-600 text-white px-10 py-4 rounded-full font-bold transition transform hover:scale-105 shadow-xl uppercase tracking-tighter">Order Sekarang</a>
+    <!-- MAIN CONTENT AREA -->
+    <main>
+        
+        <!-- PAGE: HOME -->
+        <section id="page-home" class="page-section active">
+            <!-- Hero Slider -->
+            <div class="relative h-[80vh] bg-black overflow-hidden">
+                <div id="hero-slider" class="h-full">
+                    <div class="slide active">
+                        <img src="https://images.unsplash.com/photo-1558603668-6570496b66f8?q=80&w=2000" class="w-full h-full object-cover opacity-50">
+                        <div class="absolute inset-0 flex items-center px-6 md:px-20 lg:px-32">
+                            <div class="slide-content max-w-3xl">
+                                <span class="text-orange-500 font-bold tracking-widest uppercase mb-4 block border-l-4 border-orange-500 pl-3">Professional Tailoring</span>
+                                <h1 class="text-4xl md:text-7xl font-extrabold text-white mb-6">Konveksi <span class="text-teal-400">Terpercaya</span> Berkualitas</h1>
+                                <p class="text-gray-300 text-lg mb-10 max-w-xl">Kami memberikan hasil jahitan terbaik dengan kontrol kualitas yang sangat ketat untuk setiap produk.</p>
+                                <button onclick="navigateTo('products')" class="bg-teal-600 text-white px-10 py-4 rounded-full font-bold hover:scale-105 transition">Lihat Produk</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="slide">
-                <img src="https://images.unsplash.com/photo-1556740758-90de374c12ad?q=80&w=2070" class="w-full h-full object-cover opacity-50" alt="Banner 2">
-                <div class="absolute inset-0 flex items-center justify-center text-center px-6">
-                    <div class="slide-content">
-                        <h2 class="text-4xl md:text-7xl font-extrabold text-white mb-6 uppercase tracking-tight">Kualitas Premium <br> <span class="text-orange-500">Hasil Maksimal</span></h2>
-                        <p class="text-gray-300 text-lg md:text-xl mb-10 max-w-2xl mx-auto">Didukung tenaga ahli profesional dan peralatan modern untuk setiap jahitan Anda.</p>
-                        <a href="#" class="inline-block bg-white text-purple-950 px-12 py-4 rounded-full font-bold hover:bg-orange-500 hover:text-white transition uppercase">Lihat Portfolio</a>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <!-- Slider Controls -->
-        <button onclick="prevSlide()" class="absolute left-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full border border-white/30 text-white flex items-center justify-center hover:bg-white hover:text-black transition-all z-20">
-            <i class="fas fa-chevron-left"></i>
-        </button>
-        <button onclick="nextSlide()" class="absolute right-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full border border-white/30 text-white flex items-center justify-center hover:bg-white hover:text-black transition-all z-20">
-            <i class="fas fa-chevron-right"></i>
-        </button>
-    </section>
+            <!-- Intro Info -->
+            <section class="bg-teal-600 py-12">
+                <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+                    <h2 class="text-2xl font-bold text-white tracking-tight">Kreativitas & Kualitas adalah Prioritas Kami</h2>
+                    <button onclick="navigateTo('contact')" class="bg-orange-500 text-white px-8 py-3 rounded font-bold uppercase text-sm hover:bg-white hover:text-orange-500 transition">Mulai Pesanan</button>
+                </div>
+            </section>
 
-    <!-- Icon Features -->
-    <section class="py-20">
-        <div class="container mx-auto px-6">
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
-                <div class="group text-center">
-                    <div class="w-24 h-24 mx-auto mb-6 bg-orange-100 text-orange-600 rounded-full flex items-center justify-center text-4xl group-hover:bg-orange-600 group-hover:text-white transition-all duration-500 transform group-hover:rotate-[360deg]">
-                        <i class="fas fa-magic"></i>
+            <!-- Featured Services -->
+            <section class="py-20 bg-gray-50">
+                <div class="container mx-auto px-6">
+                    <div class="text-center mb-16">
+                        <span class="text-orange-500 font-extrabold uppercase text-xs tracking-widest">Layanan Utama</span>
+                        <h2 class="text-4xl font-extrabold text-purple-950 mt-2">Apa Yang Kami Buat?</h2>
                     </div>
-                    <h3 class="text-xl font-bold text-purple-950 mb-3">Desain Bervariasi</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed">Aliquam sodales justo sit amet urna auctor scelerisque. Nam dictum, ante quis laoreet.</p>
-                </div>
-                <div class="group text-center">
-                    <div class="w-24 h-24 mx-auto mb-6 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-4xl group-hover:bg-blue-600 group-hover:text-white transition-all duration-500 transform group-hover:rotate-[360deg]">
-                        <i class="fas fa-layer-group"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-purple-950 mb-3">Bahan Terbaik</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed">Aliquam sodales justo sit amet urna auctor scelerisque. Nam dictum, ante quis laoreet.</p>
-                </div>
-                <div class="group text-center">
-                    <div class="w-24 h-24 mx-auto mb-6 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-4xl group-hover:bg-green-600 group-hover:text-white transition-all duration-500 transform group-hover:rotate-[360deg]">
-                        <i class="fas fa-shipping-fast"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-purple-950 mb-3">Order Online</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed">Aliquam sodales justo sit amet urna auctor scelerisque. Nam dictum, ante quis laoreet.</p>
-                </div>
-                <div class="group text-center">
-                    <div class="w-24 h-24 mx-auto mb-6 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center text-4xl group-hover:bg-purple-600 group-hover:text-white transition-all duration-500 transform group-hover:rotate-[360deg]">
-                        <i class="fas fa-headset"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-purple-950 mb-3">Layanan 24/7</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed">Aliquam sodales justo sit amet urna auctor scelerisque. Nam dictum, ante quis laoreet.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Teal Info Banner -->
-    <section class="bg-teal-600 py-10">
-        <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
-            <h2 class="text-xl md:text-3xl font-bold text-white text-center md:text-left tracking-tight">Brand Products & Creativity is our Fashion</h2>
-            <a href="#" class="bg-orange-500 hover:bg-white hover:text-orange-500 text-white font-bold px-8 py-3 rounded transition-colors uppercase tracking-widest text-sm">Cek Produk Kami</a>
-        </div>
-    </section>
-
-    <!-- Services Gallery -->
-    <section class="py-24 bg-gray-50">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-center mb-16 gap-6">
-                <div class="text-center md:text-left">
-                    <span class="text-orange-500 font-extrabold uppercase text-xs tracking-[0.3em] mb-4 block">Layanan Produk</span>
-                    <h2 class="text-4xl md:text-5xl font-extrabold text-purple-950 tracking-tighter">Kami Menyediakan</h2>
-                </div>
-                <div class="max-w-md text-center md:text-right text-gray-500 text-sm italic">
-                    "Kualitas adalah prioritas kami. Berikan sentuhan profesional untuk setiap pesanan pakaian Anda."
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Card 1 -->
-                <div class="product-card group relative bg-white rounded-2xl overflow-hidden shadow-lg shadow-gray-200/50">
-                    <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?q=80&w=600" class="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-700" alt="Pakaian Sport">
-                    <div class="overlay absolute inset-0 flex items-center justify-center p-6 text-center">
-                        <div>
-                            <p class="text-white text-sm mb-4">Kami mengerjakan berbagai macam jersey dan pakaian olahraga.</p>
-                            <button class="bg-white text-teal-600 w-12 h-12 rounded-full flex items-center justify-center hover:bg-orange-500 hover:text-white transition-colors">
-                                <i class="fas fa-search"></i>
-                            </button>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <!-- Item 1 -->
+                        <div class="product-card group relative bg-white rounded-2xl overflow-hidden shadow-xl" onclick="viewProduct('Pakaian Sport')">
+                            <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=800" class="w-full h-96 object-cover group-hover:scale-110 transition duration-700">
+                            <div class="overlay absolute inset-0 flex items-center justify-center p-6 text-center">
+                                <div class="text-white">
+                                    <h3 class="text-2xl font-bold mb-4">Pakaian Sport</h3>
+                                    <p class="text-sm mb-6">Jersey, celana training, dan perlengkapan olahraga custom.</p>
+                                    <button class="bg-white text-teal-600 w-12 h-12 rounded-full flex items-center justify-center mx-auto hover:bg-orange-500 hover:text-white transition">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="p-6 bg-white"><h4 class="text-xl font-bold text-purple-950">Pakaian Sport</h4></div>
+                        </div>
+                        <!-- Item 2 -->
+                        <div class="product-card group relative bg-white rounded-2xl overflow-hidden shadow-xl" onclick="viewProduct('Seragam Kantor')">
+                            <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=800" class="w-full h-96 object-cover group-hover:scale-110 transition duration-700">
+                            <div class="overlay absolute inset-0 flex items-center justify-center p-6 text-center">
+                                <div class="text-white">
+                                    <h3 class="text-2xl font-bold mb-4">Seragam Kantor</h3>
+                                    <p class="text-sm mb-6">Kemeja kerja, batik, blazer, dan celana bahan berkualitas.</p>
+                                    <button class="bg-white text-teal-600 w-12 h-12 rounded-full flex items-center justify-center mx-auto transition">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="p-6 bg-white"><h4 class="text-xl font-bold text-purple-950">Seragam Kantor</h4></div>
+                        </div>
+                        <!-- Item 3 -->
+                        <div class="product-card group relative bg-white rounded-2xl overflow-hidden shadow-xl" onclick="viewProduct('Jaket & Hoodie')">
+                            <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?q=80&w=800" class="w-full h-96 object-cover group-hover:scale-110 transition duration-700">
+                            <div class="overlay absolute inset-0 flex items-center justify-center p-6 text-center">
+                                <div class="text-white">
+                                    <h3 class="text-2xl font-bold mb-4">Jaket & Hoodie</h3>
+                                    <p class="text-sm mb-6">Bomber, varsity, hoodie jumper dengan sablon/bordir.</p>
+                                    <button class="bg-white text-teal-600 w-12 h-12 rounded-full flex items-center justify-center mx-auto transition">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="p-6 bg-white"><h4 class="text-xl font-bold text-purple-950">Jaket & Hoodie</h4></div>
                         </div>
                     </div>
-                    <div class="p-6">
-                        <h4 class="text-xl font-bold text-purple-950 mb-1">Pakaian Sport</h4>
-                        <span class="text-gray-400 text-sm flex items-center"><i class="fas fa-tag mr-2 text-xs"></i> Lihat Produk</span>
-                    </div>
                 </div>
-                <!-- Card 2 -->
-                <div class="product-card group relative bg-white rounded-2xl overflow-hidden shadow-lg shadow-gray-200/50">
-                    <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=600" class="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-700" alt="T-Shirt">
-                    <div class="overlay absolute inset-0 flex items-center justify-center p-6 text-center">
-                        <button class="bg-white text-teal-600 w-12 h-12 rounded-full flex items-center justify-center"><i class="fas fa-search"></i></button>
+            </section>
+        </section>
+
+        <!-- PAGE: ABOUT -->
+        <section id="page-about" class="page-section py-20">
+            <div class="container mx-auto px-6">
+                <div class="flex flex-col lg:flex-row gap-16 items-center">
+                    <div class="w-full lg:w-1/2 relative">
+                        <img src="https://images.unsplash.com/photo-1524234107056-1c1f48f64ab8?q=80&w=800" class="rounded-2xl shadow-2xl z-10 relative">
+                        <div class="absolute -bottom-10 -right-10 w-64 h-64 bg-orange-500 rounded-2xl -z-10 hidden md:block"></div>
                     </div>
-                    <div class="p-6">
-                        <h4 class="text-xl font-bold text-purple-950 mb-1">T-Shirt & Sablon</h4>
-                        <span class="text-gray-400 text-sm flex items-center"><i class="fas fa-tag mr-2 text-xs"></i> Lihat Produk</span>
-                    </div>
-                </div>
-                <!-- Card 3 -->
-                <div class="product-card group relative bg-white rounded-2xl overflow-hidden shadow-lg shadow-gray-200/50">
-                    <img src="https://images.unsplash.com/photo-1544816155-12df9643f363?q=80&w=600" class="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-700" alt="Tas">
-                    <div class="overlay absolute inset-0 flex items-center justify-center p-6 text-center">
-                        <button class="bg-white text-teal-600 w-12 h-12 rounded-full flex items-center justify-center"><i class="fas fa-search"></i></button>
-                    </div>
-                    <div class="p-6">
-                        <h4 class="text-xl font-bold text-purple-950 mb-1">Tas Custom</h4>
-                        <span class="text-gray-400 text-sm flex items-center"><i class="fas fa-tag mr-2 text-xs"></i> Lihat Produk</span>
-                    </div>
-                </div>
-                <!-- Card 4 -->
-                <div class="product-card group relative bg-white rounded-2xl overflow-hidden shadow-lg shadow-gray-200/50">
-                    <img src="https://images.unsplash.com/photo-1583394838336-acd977730f90?q=80&w=600" class="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-700" alt="Busana Muslim">
-                    <div class="overlay absolute inset-0 flex items-center justify-center p-6 text-center">
-                        <button class="bg-white text-teal-600 w-12 h-12 rounded-full flex items-center justify-center"><i class="fas fa-search"></i></button>
-                    </div>
-                    <div class="p-6">
-                        <h4 class="text-xl font-bold text-purple-950 mb-1">Busana Muslim</h4>
-                        <span class="text-gray-400 text-sm flex items-center"><i class="fas fa-tag mr-2 text-xs"></i> Lihat Produk</span>
+                    <div class="w-full lg:w-1/2">
+                        <span class="text-orange-500 font-bold uppercase text-sm mb-4 block">Sejak Tahun 2010</span>
+                        <h2 class="text-4xl font-extrabold text-purple-950 mb-8 leading-tight">Membangun Identitas Melalui Pakaian Berkualitas</h2>
+                        <p class="text-gray-600 mb-6 leading-loose">KedaiJahit lahir dari semangat untuk menyediakan jasa konveksi yang tidak hanya memproduksi pakaian, tetapi juga menjaga standar kualitas ekspor dengan harga lokal.</p>
+                        <p class="text-gray-600 mb-10 leading-loose">Kami telah bekerja sama dengan ratusan perusahaan, sekolah, dan brand ternama di seluruh Indonesia. Kepercayaan Anda adalah aset terbesar kami.</p>
+                        <div class="grid grid-cols-2 gap-8">
+                            <div class="border-l-4 border-teal-500 pl-4">
+                                <h4 class="text-3xl font-bold text-purple-950">500+</h4>
+                                <p class="text-sm text-gray-500">Project Selesai</p>
+                            </div>
+                            <div class="border-l-4 border-teal-500 pl-4">
+                                <h4 class="text-3xl font-bold text-purple-950">12k+</h4>
+                                <p class="text-sm text-gray-500">Pcs Per Bulan</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+        <!-- PAGE: ALL PRODUCTS -->
+        <section id="page-products" class="page-section py-20 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-extrabold text-purple-950">Katalog Produk</h2>
+                    <p class="text-gray-500 mt-4">Pilih kategori produk yang Anda inginkan</p>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Cards will be same as home but more complete -->
+                    <div class="bg-white p-4 rounded-xl shadow-md cursor-pointer hover:shadow-xl transition" onclick="viewProduct('Kaos Sablon')">
+                        <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=500" class="w-full h-64 object-cover rounded-lg mb-4">
+                        <h3 class="font-bold text-lg">Kaos & Sablon</h3>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl shadow-md cursor-pointer hover:shadow-xl transition" onclick="viewProduct('Baju Olahraga')">
+                        <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?q=80&w=500" class="w-full h-64 object-cover rounded-lg mb-4">
+                        <h3 class="font-bold text-lg">Baju Olahraga</h3>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl shadow-md cursor-pointer hover:shadow-xl transition" onclick="viewProduct('Busana Muslim')">
+                        <img src="https://images.unsplash.com/photo-1583394838336-acd977730f90?q=80&w=500" class="w-full h-64 object-cover rounded-lg mb-4">
+                        <h3 class="font-bold text-lg">Busana Muslim</h3>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl shadow-md cursor-pointer hover:shadow-xl transition" onclick="viewProduct('Jas Almamater')">
+                        <img src="https://images.unsplash.com/photo-1544816155-12df9643f363?q=80&w=500" class="w-full h-64 object-cover rounded-lg mb-4">
+                        <h3 class="font-bold text-lg">Jas Almamater</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE: CONTACT -->
+        <section id="page-contact" class="page-section py-20">
+            <div class="container mx-auto px-6">
+                <div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col md:flex-row">
+                    <div class="bg-purple-950 text-white p-12 md:w-2/5">
+                        <h2 class="text-3xl font-bold mb-8">Hubungi Kami</h2>
+                        <div class="space-y-8">
+                            <div class="flex gap-4">
+                                <i class="fas fa-map-marker-alt text-orange-500 mt-1"></i>
+                                <p>Jl. Konveksi No. 123, Jakarta Selatan</p>
+                            </div>
+                            <div class="flex gap-4">
+                                <i class="fas fa-phone-alt text-orange-500 mt-1"></i>
+                                <p>+62 812 3456 789</p>
+                            </div>
+                            <div class="flex gap-4">
+                                <i class="fas fa-envelope text-orange-500 mt-1"></i>
+                                <p>cs@kedaijahit.com</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-12 md:w-3/5">
+                        <form onsubmit="event.preventDefault(); alert('Pesan Anda telah terkirim!')" class="space-y-6">
+                            <div class="grid grid-cols-2 gap-6">
+                                <div><label class="block text-xs font-bold uppercase mb-2">Nama</label><input type="text" class="w-full border-b-2 py-2 focus:border-orange-500 outline-none"></div>
+                                <div><label class="block text-xs font-bold uppercase mb-2">Email</label><input type="email" class="w-full border-b-2 py-2 focus:border-orange-500 outline-none"></div>
+                            </div>
+                            <div><label class="block text-xs font-bold uppercase mb-2">Pesan</label><textarea rows="4" class="w-full border-b-2 py-2 focus:border-orange-500 outline-none"></textarea></div>
+                            <button class="bg-orange-500 text-white px-10 py-4 rounded-full font-bold shadow-xl hover:bg-purple-950 transition">Kirim Pesan</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE: PRODUCT DETAIL (DYNAMIS) -->
+        <section id="page-detail" class="page-section py-20">
+            <div class="container mx-auto px-6">
+                <button onclick="navigateTo('products')" class="flex items-center gap-2 text-gray-500 hover:text-orange-500 mb-10">
+                    <i class="fas fa-arrow-left"></i> Kembali ke Katalog
+                </button>
+                <div class="flex flex-col lg:flex-row gap-16">
+                    <div class="w-full lg:w-1/2">
+                        <img id="detail-img" src="" class="w-full h-[500px] object-cover rounded-3xl shadow-xl">
+                    </div>
+                    <div class="w-full lg:w-1/2">
+                        <span id="detail-cat" class="text-orange-500 font-bold uppercase tracking-widest text-sm">Produk KedaiJahit</span>
+                        <h1 id="detail-title" class="text-5xl font-extrabold text-purple-950 mt-4 mb-6 uppercase">Pakaian Sport</h1>
+                        <p class="text-gray-600 text-lg leading-loose mb-10">Kami menggunakan bahan teknologi "Quick-Dry" yang menyerap keringat dengan baik. Jahitan kuat (overdeck) memastikan ketahanan maksimal saat digunakan untuk aktivitas berat.</p>
+                        <div class="bg-gray-50 p-6 rounded-2xl mb-10">
+                            <h4 class="font-bold mb-4">Detail Produksi:</h4>
+                            <ul class="space-y-2 text-gray-600">
+                                <li><i class="fas fa-check text-green-500 mr-2"></i> Min. Order 24 Pcs</li>
+                                <li><i class="fas fa-check text-green-500 mr-2"></i> Bahan: Dri-fit / Paragon / Serena</li>
+                                <li><i class="fas fa-check text-green-500 mr-2"></i> Teknik: Sablon Digital / Bordir Komputer</li>
+                                <li><i class="fas fa-check text-green-500 mr-2"></i> Estimasi: 14 Hari Kerja</li>
+                            </ul>
+                        </div>
+                        <a href="https://wa.me/628123456789" class="inline-block bg-green-500 text-white px-12 py-5 rounded-full font-bold text-lg shadow-xl hover:bg-green-600 transition">
+                            <i class="fab fa-whatsapp mr-2"></i> Tanya Via WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
 
     <!-- Footer -->
     <footer class="bg-purple-950 text-white pt-20 pb-10">
-        <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+        <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 text-sm text-gray-400">
             <div>
-                <div class="text-2xl font-bold mb-8 flex items-center gap-2">
-                    <i class="fas fa-cut text-orange-500"></i> Kedai<span class="text-orange-500">Jahit</span>
-                </div>
-                <p class="text-gray-400 text-sm leading-loose mb-8">
-                    Solusi konveksi terbaik untuk kebutuhan instansi, sekolah, komunitas, maupun brand fashion Anda. Berkomitmen memberikan hasil maksimal dengan harga kompetitif.
-                </p>
+                <div class="text-white text-2xl font-bold mb-8">Kedai<span class="text-orange-500">Jahit</span></div>
+                <p class="leading-loose mb-8">Layanan jasa konveksi terintegrasi dengan teknologi modern untuk hasil pakaian yang presisi dan berkualitas tinggi.</p>
                 <div class="flex gap-4">
-                    <a href="#" class="w-10 h-10 rounded bg-white/10 flex items-center justify-center hover:bg-orange-500 transition-colors"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="w-10 h-10 rounded bg-white/10 flex items-center justify-center hover:bg-orange-500 transition-colors"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="w-10 h-10 rounded bg-white/10 flex items-center justify-center hover:bg-orange-500 transition-colors"><i class="fab fa-whatsapp"></i></a>
+                    <a class="w-10 h-10 bg-white/10 flex items-center justify-center rounded hover:bg-orange-500 transition text-white"><i class="fab fa-facebook-f"></i></a>
+                    <a class="w-10 h-10 bg-white/10 flex items-center justify-center rounded hover:bg-orange-500 transition text-white"><i class="fab fa-instagram"></i></a>
                 </div>
             </div>
-            
             <div>
-                <h3 class="text-lg font-bold mb-8 border-l-4 border-orange-500 pl-4 uppercase tracking-wider">Navigasi</h3>
-                <ul class="space-y-4 text-gray-400 text-sm">
-                    <li><a href="#" class="hover:text-orange-500 flex items-center"><i class="fas fa-chevron-right mr-3 text-[10px]"></i> Tentang Kami</a></li>
-                    <li><a href="#" class="hover:text-orange-500 flex items-center"><i class="fas fa-chevron-right mr-3 text-[10px]"></i> Portfolio Produk</a></li>
-                    <li><a href="#" class="hover:text-orange-500 flex items-center"><i class="fas fa-chevron-right mr-3 text-[10px]"></i> FAQ</a></li>
-                    <li><a href="#" class="hover:text-orange-500 flex items-center"><i class="fas fa-chevron-right mr-3 text-[10px]"></i> Hubungi Kami</a></li>
+                <h4 class="text-white font-bold mb-8 border-l-4 border-orange-500 pl-4 uppercase">Navigasi</h4>
+                <ul class="space-y-4">
+                    <li><a onclick="navigateTo('home')" class="hover:text-orange-500 cursor-pointer">Home</a></li>
+                    <li><a onclick="navigateTo('about')" class="hover:text-orange-500 cursor-pointer">Tentang Kami</a></li>
+                    <li><a onclick="navigateTo('products')" class="hover:text-orange-500 cursor-pointer">Layanan Produk</a></li>
+                    <li><a onclick="navigateTo('contact')" class="hover:text-orange-500 cursor-pointer">Hubungi Kami</a></li>
                 </ul>
             </div>
-
             <div>
-                <h3 class="text-lg font-bold mb-8 border-l-4 border-orange-500 pl-4 uppercase tracking-wider">Info Terbaru</h3>
-                <div class="space-y-6">
-                    <div class="flex gap-4 group cursor-pointer">
-                        <div class="w-16 h-16 bg-white/5 rounded-lg overflow-hidden flex-shrink-0">
-                            <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?q=80&w=100" class="w-full h-full object-cover group-hover:scale-110 transition-transform" alt="News">
-                        </div>
-                        <div>
-                            <p class="text-xs text-orange-500 font-bold mb-1">20 Mar 2024</p>
-                            <h4 class="text-sm font-semibold group-hover:text-orange-500 transition-colors">Tips Memilih Bahan Kaos...</h4>
-                        </div>
+                <h4 class="text-white font-bold mb-8 border-l-4 border-orange-500 pl-4 uppercase">Info Produksi</h4>
+                <div class="flex gap-4 mb-6">
+                    <div class="w-12 h-12 bg-white/5 rounded-lg"></div>
+                    <div>
+                        <p class="text-xs text-orange-500 font-bold mb-1">Update</p>
+                        <p class="text-white">Tips memilih bahan kemeja...</p>
                     </div>
                 </div>
             </div>
-
             <div>
-                <h3 class="text-lg font-bold mb-8 border-l-4 border-orange-500 pl-4 uppercase tracking-wider">Kontak Kami</h3>
-                <ul class="space-y-6 text-sm text-gray-400">
-                    <li class="flex gap-4">
-                        <i class="fas fa-map-marker-alt text-orange-500 text-lg"></i>
-                        <span>Jl. Konveksi Raya No. 45, Jakarta Selatan, Indonesia</span>
-                    </li>
-                    <li class="flex gap-4">
-                        <i class="fas fa-phone-alt text-orange-500 text-lg"></i>
-                        <span>+62 21 7890 1234</span>
-                    </li>
-                    <li class="flex gap-4">
-                        <i class="fas fa-clock text-orange-500 text-lg"></i>
-                        <span>Senin - Sabtu: 08.00 - 17.00</span>
-                    </li>
-                </ul>
+                <h4 class="text-white font-bold mb-8 border-l-4 border-orange-500 pl-4 uppercase">Alamat</h4>
+                <p class="mb-6">Jl. Konveksi Raya No. 45, Jakarta Selatan, Indonesia</p>
+                <p>Senin - Sabtu: 08:00 - 17:00</p>
             </div>
         </div>
-        <div class="container mx-auto px-6 mt-20 pt-8 border-t border-white/10 text-center text-gray-500 text-xs">
-            <p>&copy; 2024 KedaiJahit Konveksi. Made with <i class="fas fa-heart text-red-500 mx-1"></i> For Your Passion.</p>
+        <div class="text-center mt-20 pt-8 border-t border-white/10 text-xs opacity-50">
+            &copy; 2024 KedaiJahit Konveksi. Seluruh Hak Cipta Dilindungi.
         </div>
     </footer>
 
-    <!-- Right Sidebar (Instagram Gallery) -->
+    <!-- Sidebar Right -->
     <div id="sidebar-overlay" onclick="toggleSidebar()" class="fixed inset-0 bg-black/60 z-[110] hidden backdrop-blur-sm"></div>
-    <div id="sidebar" class="fixed top-0 right-0 h-full w-[320px] bg-white z-[120] translate-x-full shadow-2xl p-8 overflow-y-auto">
+    <div id="sidebar" class="fixed top-0 right-0 h-full w-[300px] bg-white z-[120] translate-x-full shadow-2xl p-8">
         <div class="flex justify-between items-center mb-10">
-            <h3 class="text-xl font-bold text-purple-950 border-b-4 border-orange-500 pb-1">Galeri IG</h3>
-            <button onclick="toggleSidebar()" class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center hover:bg-red-500 hover:text-white transition-all">
-                <i class="fas fa-times"></i>
-            </button>
+            <h3 class="font-bold text-xl border-b-4 border-orange-500">Menu Utama</h3>
+            <button onclick="toggleSidebar()"><i class="fas fa-times"></i></button>
         </div>
-        
-        <p class="text-gray-500 text-sm italic mb-8">Ikuti update terbaru hasil produksi kami melalui Instagram resmi @kedaijahit.</p>
-        
-        <div class="grid grid-cols-2 gap-3 mb-12">
-            <div class="aspect-square bg-gray-100 rounded-lg overflow-hidden group cursor-pointer relative">
-                <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?q=80&w=200" class="w-full h-full object-cover group-hover:scale-110 transition-transform">
-                <div class="absolute inset-0 bg-orange-500/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center"><i class="fab fa-instagram text-white text-xl"></i></div>
-            </div>
-            <div class="aspect-square bg-gray-100 rounded-lg overflow-hidden group cursor-pointer relative">
-                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=200" class="w-full h-full object-cover group-hover:scale-110 transition-transform">
-                <div class="absolute inset-0 bg-orange-500/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center"><i class="fab fa-instagram text-white text-xl"></i></div>
-            </div>
-            <div class="aspect-square bg-gray-100 rounded-lg overflow-hidden group cursor-pointer relative">
-                <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=200" class="w-full h-full object-cover group-hover:scale-110 transition-transform">
-                <div class="absolute inset-0 bg-orange-500/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center"><i class="fab fa-instagram text-white text-xl"></i></div>
-            </div>
-            <div class="aspect-square bg-gray-100 rounded-lg overflow-hidden group cursor-pointer relative">
-                <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=200" class="w-full h-full object-cover group-hover:scale-110 transition-transform">
-                <div class="absolute inset-0 bg-orange-500/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center"><i class="fab fa-instagram text-white text-xl"></i></div>
-            </div>
-        </div>
-
-        <h3 class="text-lg font-bold text-purple-950 border-b-4 border-orange-500 pb-1 mb-6">Tautan Penting</h3>
-        <ul class="space-y-4 text-sm text-gray-600 font-medium">
-            <li><a href="#" class="hover:text-orange-500 transition-colors">Syarat & Ketentuan</a></li>
-            <li><a href="#" class="hover:text-orange-500 transition-colors">Kebijakan Privasi</a></li>
-            <li><a href="#" class="hover:text-orange-500 transition-colors">Download Katalog PDF</a></li>
-            <li><a href="#" class="hover:text-orange-500 transition-colors">Lacak Pesanan</a></li>
+        <ul class="space-y-6 font-bold text-gray-700">
+            <li onclick="navigateTo('home'); toggleSidebar()" class="hover:text-orange-500 cursor-pointer">HOME</li>
+            <li onclick="navigateTo('about'); toggleSidebar()" class="hover:text-orange-500 cursor-pointer">ABOUT</li>
+            <li onclick="navigateTo('products'); toggleSidebar()" class="hover:text-orange-500 cursor-pointer">SERVICES</li>
+            <li onclick="navigateTo('contact'); toggleSidebar()" class="hover:text-orange-500 cursor-pointer">CONTACT</li>
         </ul>
-    </div>
-
-    <!-- Fullscreen Search -->
-    <div id="search-modal" class="fixed inset-0 bg-purple-950/95 z-[200] hidden items-center justify-center p-6">
-        <button onclick="toggleSearch()" class="absolute top-10 right-10 text-white text-4xl hover:text-orange-500">&times;</button>
-        <div class="w-full max-w-3xl">
-            <h2 class="text-white text-2xl font-bold mb-6 text-center">Apa yang Anda cari?</h2>
-            <div class="relative">
-                <input type="text" placeholder="Ketik kata kunci (misal: Jaket)..." class="w-full bg-transparent border-b-2 border-white/30 py-4 text-white text-2xl focus:outline-none focus:border-orange-500 transition-all placeholder:text-white/20">
-                <button class="absolute right-0 bottom-4 text-white text-2xl hover:text-orange-500"><i class="fas fa-search"></i></button>
+        <div class="mt-20">
+            <h4 class="font-bold mb-4">Galeri Produksi</h4>
+            <div class="grid grid-cols-2 gap-2">
+                <div class="bg-gray-100 aspect-square rounded"></div>
+                <div class="bg-gray-100 aspect-square rounded"></div>
             </div>
         </div>
     </div>
 
-    <!-- Mobile Floating WhatsApp -->
-    <a href="https://wa.me/6281234567890" target="_blank" class="fixed bottom-6 right-6 z-[90] group flex items-center">
-        <div class="bg-white text-gray-700 px-4 py-2 rounded-full mr-3 shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all -translate-x-4 group-hover:translate-x-0 font-bold text-sm">
-            Chat Admin Kami
+    <!-- Search Overlay -->
+    <div id="search-modal" class="fixed inset-0 bg-purple-950/95 z-[200] hidden items-center justify-center p-6">
+        <button onclick="toggleSearch()" class="absolute top-10 right-10 text-white text-4xl">&times;</button>
+        <div class="w-full max-w-2xl text-center">
+            <input type="text" placeholder="Cari layanan konveksi..." class="w-full bg-transparent border-b-2 border-white/30 text-white text-3xl py-4 focus:outline-none focus:border-orange-500 placeholder:opacity-30">
         </div>
-        <div class="bg-green-500 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-[0_10px_25px_rgba(34,197,94,0.4)] hover:scale-110 transition-transform relative">
-            <span class="absolute top-0 right-0 w-4 h-4 bg-red-500 border-2 border-white rounded-full animate-ping"></span>
-            <i class="fab fa-whatsapp text-3xl"></i>
-        </div>
-    </a>
+    </div>
 
     <script>
-        // Hero Slider Logic
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.slide');
-        
-        function showSlide(index) {
-            slides.forEach(s => s.classList.remove('active'));
-            slides[index].classList.add('active');
+        // Logika SPA Routing
+        function navigateTo(pageId) {
+            // Sembunyikan semua section
+            document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
+            // Tampilkan section yang dituju
+            const target = document.getElementById('page-' + pageId);
+            if(target) target.classList.add('active');
+
+            // Update Nav Active State
+            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+            const activeLink = document.getElementById('link-' + pageId);
+            if(activeLink) activeLink.classList.add('active');
+
+            // Scroll ke atas
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % slides.length;
-            showSlide(currentSlide);
+        // Logika Detail Produk (Dinamis)
+        function viewProduct(title) {
+            const detailSection = document.getElementById('page-detail');
+            const img = document.getElementById('detail-img');
+            const titleEl = document.getElementById('detail-title');
+
+            // Data dummy berdasarkan pilihan (bisa diperluas)
+            const productImages = {
+                'Pakaian Sport': 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=800',
+                'Seragam Kantor': 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=800',
+                'Jaket & Hoodie': 'https://images.unsplash.com/photo-1556821840-3a63f95609a7?q=80&w=800',
+                'Kaos Sablon': 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=500',
+                'Baju Olahraga': 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?q=80&w=500',
+                'Busana Muslim': 'https://images.unsplash.com/photo-1583394838336-acd977730f90?q=80&w=500',
+                'Jas Almamater': 'https://images.unsplash.com/photo-1544816155-12df9643f363?q=80&w=500'
+            };
+
+            titleEl.innerText = title;
+            img.src = productImages[title] || productImages['Pakaian Sport'];
+
+            navigateTo('detail');
         }
 
-        function prevSlide() {
-            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-            showSlide(currentSlide);
-        }
-
-        // Auto transition
-        let slideTimer = setInterval(nextSlide, 7000);
-
-        // Sidebar & Overlay Logic
+        // Sidebar & UI Helpers
         function toggleSidebar() {
             const sidebar = document.getElementById('sidebar');
             const overlay = document.getElementById('sidebar-overlay');
             const isOpen = sidebar.style.transform === 'translateX(0%)';
-            
-            if (isOpen) {
-                sidebar.style.transform = 'translateX(100%)';
-                overlay.classList.add('hidden');
-            } else {
-                sidebar.style.transform = 'translateX(0%)';
-                overlay.classList.remove('hidden');
-            }
+            sidebar.style.transform = isOpen ? 'translateX(100%)' : 'translateX(0%)';
+            overlay.classList.toggle('hidden');
         }
 
-        // Search Modal Logic
         function toggleSearch() {
-            const modal = document.getElementById('search-modal');
-            modal.classList.toggle('hidden');
-            modal.classList.toggle('flex');
-            
-            if (!modal.classList.contains('hidden')) {
-                modal.querySelector('input').focus();
-            }
+            document.getElementById('search-modal').classList.toggle('hidden');
+            document.getElementById('search-modal').classList.toggle('flex');
         }
-
-        // Responsive Navbar Scroll Effect
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            if (window.scrollY > 100) {
-                header.classList.add('py-2');
-                header.classList.remove('py-4');
-            } else {
-                header.classList.add('py-4');
-                header.classList.remove('py-2');
-            }
-        });
     </script>
 </body>
 </html>
