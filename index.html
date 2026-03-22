@@ -76,36 +76,110 @@
     <main>
         <!-- 1. HOME PAGE -->
         <section id="page-home" class="page-section active">
+            <!-- Hero Section -->
             <div class="hero-gradient min-h-[80vh] flex items-center text-white px-6 lg:px-24 py-20">
                 <div class="max-w-3xl">
                     <span class="bg-orange-500 text-white px-4 py-1 rounded text-[10px] font-bold uppercase tracking-widest mb-6 inline-block">Premium Konveksi</span>
-                    <h1 class="text-4xl lg:text-7xl font-black font-brand mb-6 leading-tight">SOLUSI <span class="text-teal-400 italic">JAHIT</span> TERBAIK & CEPAT</h1>
+                    <h1 class="text-4xl lg:text-7xl font-black font-brand mb-6 leading-tight uppercase">SOLUSI <span class="text-teal-400 italic">PRODUKSI</span> TERBAIK & CEPAT</h1>
                     <p class="text-gray-300 text-base lg:text-lg mb-10 max-w-xl leading-relaxed">Produksi seragam, kaos, dan jaket dengan standar kualitas ekspor. Ribuan klien telah mempercayakan identitas mereka kepada kami.</p>
                     <div class="flex flex-col sm:flex-row gap-4">
-                        <button onclick="showPage('categories')" class="bg-teal-600 hover:bg-teal-700 text-white px-8 py-4 rounded-full font-bold shadow-xl transition-all">Lihat Produk</button>
-                        <button onclick="showPage('contact')" class="border-2 border-white px-8 py-4 rounded-full font-bold hover:bg-white hover:text-[#2e0249] transition-all">Hubungi Admin</button>
+                        <button onclick="showPage('categories')" class="bg-teal-600 hover:bg-teal-700 text-white px-8 py-4 rounded-full font-bold shadow-xl transition-all uppercase text-sm tracking-wider">Lihat Katalog</button>
+                        <button onclick="showPage('contact')" class="border-2 border-white px-8 py-4 rounded-full font-bold hover:bg-white hover:text-[#2e0249] transition-all uppercase text-sm tracking-wider">Hubungi Admin</button>
                     </div>
                 </div>
             </div>
 
-            <!-- Stats/Mini About -->
-            <div class="py-12 bg-slate-50">
+            <!-- Stats Section -->
+            <div class="py-12 bg-white border-b border-slate-100">
                 <div class="container mx-auto px-6 grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
                     <div>
-                        <h3 class="text-3xl font-black text-[#2e0249]">10+</h3>
-                        <p class="text-gray-500 text-xs font-bold uppercase tracking-tighter">Tahun Pengalaman</p>
+                        <h3 class="text-4xl font-black text-[#2e0249]">10+</h3>
+                        <p class="text-gray-400 text-[10px] font-bold uppercase tracking-widest mt-2">Tahun Pengalaman</p>
                     </div>
                     <div>
-                        <h3 class="text-3xl font-black text-[#2e0249]">500k+</h3>
-                        <p class="text-gray-500 text-xs font-bold uppercase tracking-tighter">Produk Terjual</p>
+                        <h3 class="text-4xl font-black text-[#2e0249]">500k+</h3>
+                        <p class="text-gray-400 text-[10px] font-bold uppercase tracking-widest mt-2">Produk Terjual</p>
                     </div>
                     <div>
-                        <h3 class="text-3xl font-black text-[#2e0249]">1k+</h3>
-                        <p class="text-gray-500 text-xs font-bold uppercase tracking-tighter">Klien Instansi</p>
+                        <h3 class="text-4xl font-black text-[#2e0249]">1k+</h3>
+                        <p class="text-gray-400 text-[10px] font-bold uppercase tracking-widest mt-2">Klien Instansi</p>
                     </div>
                     <div>
-                        <h3 class="text-3xl font-black text-[#2e0249]">24h</h3>
-                        <p class="text-gray-500 text-xs font-bold uppercase tracking-tighter">Fast Response</p>
+                        <h3 class="text-4xl font-black text-[#2e0249]">24h</h3>
+                        <p class="text-gray-400 text-[10px] font-bold uppercase tracking-widest mt-2">Produksi Cepat</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Why Choose Us Section (BARU/KEMBALI) -->
+            <div class="py-24 container mx-auto px-6">
+                <div class="flex flex-col lg:flex-row gap-16 items-center">
+                    <div class="lg:w-1/2">
+                        <span class="text-orange-500 font-bold uppercase tracking-[0.3em] text-xs">Keunggulan Kami</span>
+                        <h2 class="text-4xl font-black text-[#2e0249] font-brand mt-4 mb-8 leading-tight">MENGAPA HARUS <br><span class="text-teal-600">KEDAIJAHIT?</span></h2>
+                        <div class="space-y-8">
+                            <div class="flex gap-6">
+                                <div class="w-14 h-14 bg-slate-100 rounded-2xl flex items-center justify-center shrink-0 text-orange-500 text-xl">
+                                    <i class="fas fa-gem"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-[#2e0249] uppercase text-sm mb-2">Bahan Premium</h4>
+                                    <p class="text-gray-500 text-sm leading-relaxed">Kami hanya menggunakan material pilihan terbaik mulai dari Cotton Combed hingga bahan Drill berkualitas tinggi.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-6">
+                                <div class="w-14 h-14 bg-slate-100 rounded-2xl flex items-center justify-center shrink-0 text-teal-600 text-xl">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-[#2e0249] uppercase text-sm mb-2">Pengerjaan Tepat Waktu</h4>
+                                    <p class="text-gray-500 text-sm leading-relaxed">Sistem manajemen produksi modern memastikan pesanan Anda selesai sesuai jadwal yang disepakati.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-6">
+                                <div class="w-14 h-14 bg-slate-100 rounded-2xl flex items-center justify-center shrink-0 text-purple-600 text-xl">
+                                    <i class="fas fa-shield-alt"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-[#2e0249] uppercase text-sm mb-2">Garansi Kualitas</h4>
+                                    <p class="text-gray-500 text-sm leading-relaxed">Jika ada cacat produksi, kami siap bertanggung jawab penuh demi kepuasan pelanggan setia kami.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2 grid grid-cols-2 gap-4">
+                        <img src="https://images.unsplash.com/photo-1558603668-6570496b66f8?q=80&w=600" class="rounded-3xl shadow-xl mt-12">
+                        <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=600" class="rounded-3xl shadow-xl">
+                    </div>
+                </div>
+            </div>
+
+            <!-- How We Work Section (BARU/KEMBALI) -->
+            <div class="py-24 bg-slate-50">
+                <div class="container mx-auto px-6 text-center mb-16">
+                    <span class="text-orange-500 font-bold uppercase tracking-[0.3em] text-xs">Alur Kerja</span>
+                    <h2 class="text-4xl font-black text-[#2e0249] font-brand mt-4 uppercase italic">PROSES MUDAH</h2>
+                </div>
+                <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 text-center">
+                    <div class="relative">
+                        <div class="w-16 h-16 bg-white rounded-full shadow-lg flex items-center justify-center mx-auto mb-6 text-teal-600 font-black text-xl">01</div>
+                        <h4 class="font-bold text-[#2e0249] uppercase text-xs mb-3 tracking-widest">Konsultasi</h4>
+                        <p class="text-gray-400 text-xs leading-loose">Diskusikan desain, bahan, dan jumlah pesanan dengan admin.</p>
+                    </div>
+                    <div class="relative">
+                        <div class="w-16 h-16 bg-white rounded-full shadow-lg flex items-center justify-center mx-auto mb-6 text-teal-600 font-black text-xl">02</div>
+                        <h4 class="font-bold text-[#2e0249] uppercase text-xs mb-3 tracking-widest">Down Payment</h4>
+                        <p class="text-gray-400 text-xs leading-loose">Pembayaran DP 50% untuk mulai masuk antrian produksi.</p>
+                    </div>
+                    <div class="relative">
+                        <div class="w-16 h-16 bg-white rounded-full shadow-lg flex items-center justify-center mx-auto mb-6 text-teal-600 font-black text-xl">03</div>
+                        <h4 class="font-bold text-[#2e0249] uppercase text-xs mb-3 tracking-widest">Produksi</h4>
+                        <p class="text-gray-400 text-xs leading-loose">Pesanan dijahit dan disablon/bordir oleh tenaga ahli kami.</p>
+                    </div>
+                    <div class="relative">
+                        <div class="w-16 h-16 bg-white rounded-full shadow-lg flex items-center justify-center mx-auto mb-6 text-teal-600 font-black text-xl">04</div>
+                        <h4 class="font-bold text-[#2e0249] uppercase text-xs mb-3 tracking-widest">Pengiriman</h4>
+                        <p class="text-gray-400 text-xs leading-loose">Pelunasan dilakukan dan pesanan siap dikirim ke lokasi Anda.</p>
                     </div>
                 </div>
             </div>
@@ -124,12 +198,12 @@
                 <div class="category-card relative rounded-3xl overflow-hidden shadow-2xl h-[400px] cursor-pointer group" onclick="showProductList('Kaos & Polo')">
                     <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=800" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
                     <div class="product-overlay absolute inset-0 flex flex-col justify-center items-center text-center p-6">
-                        <h3 class="text-white text-2xl font-black mb-2 font-brand">KAOS & POLO</h3>
+                        <h3 class="text-white text-2xl font-black mb-2 font-brand uppercase tracking-tighter">KAOS & POLO</h3>
                         <p class="text-white/80 text-sm mb-6">T-shirt, Wangky, Polo Shirt</p>
                         <span class="bg-white text-teal-600 px-6 py-2 rounded-full font-bold text-xs uppercase">Buka Kategori</span>
                     </div>
                     <div class="absolute bottom-0 left-0 w-full bg-white/95 backdrop-blur p-5 flex justify-between items-center">
-                        <span class="font-black text-[#2e0249] text-sm uppercase">Koleksi Kaos</span>
+                        <span class="font-black text-[#2e0249] text-sm uppercase italic">Koleksi Kaos</span>
                         <i class="fas fa-chevron-right text-orange-500"></i>
                     </div>
                 </div>
@@ -138,12 +212,12 @@
                 <div class="category-card relative rounded-3xl overflow-hidden shadow-2xl h-[400px] cursor-pointer group" onclick="showProductList('Kemeja & Seragam')">
                     <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=800" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
                     <div class="product-overlay absolute inset-0 flex flex-col justify-center items-center text-center p-6">
-                        <h3 class="text-white text-2xl font-black mb-2 font-brand">KEMEJA & PDL</h3>
+                        <h3 class="text-white text-2xl font-black mb-2 font-brand uppercase tracking-tighter">KEMEJA & PDL</h3>
                         <p class="text-white/80 text-sm mb-6">Seragam Kantor, PDH, Wearpack</p>
                         <span class="bg-white text-teal-600 px-6 py-2 rounded-full font-bold text-xs uppercase">Buka Kategori</span>
                     </div>
                     <div class="absolute bottom-0 left-0 w-full bg-white/95 backdrop-blur p-5 flex justify-between items-center">
-                        <span class="font-black text-[#2e0249] text-sm uppercase">Koleksi Seragam</span>
+                        <span class="font-black text-[#2e0249] text-sm uppercase italic">Koleksi Seragam</span>
                         <i class="fas fa-chevron-right text-orange-500"></i>
                     </div>
                 </div>
@@ -152,19 +226,19 @@
                 <div class="category-card relative rounded-3xl overflow-hidden shadow-2xl h-[400px] cursor-pointer group" onclick="showProductList('Jaket & Hoodie')">
                     <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?q=80&w=800" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
                     <div class="product-overlay absolute inset-0 flex flex-col justify-center items-center text-center p-6">
-                        <h3 class="text-white text-2xl font-black mb-2 font-brand">JAKET & OUTER</h3>
+                        <h3 class="text-white text-2xl font-black mb-2 font-brand uppercase tracking-tighter">JAKET & OUTER</h3>
                         <p class="text-white/80 text-sm mb-6">Hoodie, Bomber, Varsity</p>
                         <span class="bg-white text-teal-600 px-6 py-2 rounded-full font-bold text-xs uppercase">Buka Kategori</span>
                     </div>
                     <div class="absolute bottom-0 left-0 w-full bg-white/95 backdrop-blur p-5 flex justify-between items-center">
-                        <span class="font-black text-[#2e0249] text-sm uppercase">Koleksi Jaket</span>
+                        <span class="font-black text-[#2e0249] text-sm uppercase italic">Koleksi Jaket</span>
                         <i class="fas fa-chevron-right text-orange-500"></i>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 3. PRODUCT LIST PAGE (Dinamis Berdasarkan Kategori) -->
+        <!-- 3. PRODUCT LIST PAGE -->
         <section id="page-product-list" class="page-section py-20 bg-slate-50">
             <div class="container mx-auto px-6">
                 <button onclick="showPage('categories')" class="text-gray-400 hover:text-orange-500 mb-8 font-bold uppercase text-[10px] tracking-widest flex items-center gap-2">
@@ -189,7 +263,7 @@
                     <!-- Image Area -->
                     <div class="lg:w-1/2">
                         <div class="sticky top-24">
-                            <img id="d-img" src="" class="w-full aspect-[4/5] object-cover rounded-[2.5rem] shadow-2xl">
+                            <img id="d-img" src="" class="w-full aspect-[4/5] object-cover rounded-[2.5rem] shadow-2xl border-4 border-white">
                         </div>
                     </div>
                     
@@ -201,7 +275,7 @@
                         
                         <!-- Order Form -->
                         <div class="bg-white p-8 lg:p-10 rounded-[2rem] shadow-2xl border border-slate-100">
-                            <h3 class="font-black text-xl text-[#2e0249] mb-8 uppercase font-brand border-b pb-4">Formulir Pesanan</h3>
+                            <h3 class="font-black text-xl text-[#2e0249] mb-8 uppercase font-brand border-b pb-4 tracking-tighter">Formulir Pesanan</h3>
                             <div class="space-y-6">
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <div class="space-y-2">
@@ -217,7 +291,7 @@
                                     <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Spesifikasi Bahan & Sablon</label>
                                     <textarea id="o-desc" rows="4" placeholder="Misal: Cotton Combed 24s, Sablon Plastisol, Warna Hitam..." class="w-full p-4 bg-slate-50 rounded-xl border-none outline-none focus:ring-2 focus:ring-orange-500 transition"></textarea>
                                 </div>
-                                <button onclick="orderViaWA()" class="w-full bg-[#2e0249] hover:bg-orange-500 text-white py-5 rounded-2xl font-black text-lg flex items-center justify-center gap-4 transition shadow-xl transform active:scale-95">
+                                <button onclick="orderViaWA()" class="w-full bg-[#2e0249] hover:bg-orange-500 text-white py-5 rounded-2xl font-black text-lg flex items-center justify-center gap-4 transition shadow-xl transform active:scale-95 uppercase italic tracking-tighter">
                                     <i class="fab fa-whatsapp text-2xl"></i> ORDER SEKARANG
                                 </button>
                             </div>
@@ -236,17 +310,17 @@
                 </div>
                 <div class="lg:w-1/2">
                     <span class="text-orange-500 font-bold uppercase tracking-[0.3em] text-xs">Siapa Kami</span>
-                    <h2 class="text-4xl lg:text-5xl font-black text-[#2e0249] font-brand mt-4 mb-8 leading-tight">MENGUTAMAKAN <span class="text-teal-600">KUALITAS</span> & KECEPATAN</h2>
+                    <h2 class="text-4xl lg:text-5xl font-black text-[#2e0249] font-brand mt-4 mb-8 leading-tight uppercase">MENGUTAMAKAN <span class="text-teal-600 italic">KUALITAS</span> & KECEPATAN</h2>
                     <p class="text-gray-600 text-lg leading-loose mb-8 italic">"Kami bukan sekadar tukang jahit, kami adalah mitra identitas Anda."</p>
-                    <p class="text-gray-500 leading-loose mb-10">Berdiri sejak 2014, KedaiJahit telah memproduksi lebih dari satu juta helai pakaian untuk berbagai kebutuhan perusahaan, komunitas, dan brand lokal di seluruh Indonesia.</p>
+                    <p class="text-gray-500 leading-loose mb-10 text-sm">Berdiri sejak 2014, KedaiJahit telah memproduksi lebih dari satu juta helai pakaian untuk berbagai kebutuhan perusahaan, komunitas, dan brand lokal di seluruh Indonesia.</p>
                     <div class="grid grid-cols-2 gap-8">
                         <div class="bg-slate-50 p-6 rounded-2xl">
                             <h4 class="text-2xl font-black text-orange-500">100%</h4>
-                            <p class="text-[10px] font-bold uppercase text-gray-400">Tepat Waktu</p>
+                            <p class="text-[10px] font-bold uppercase text-gray-400 tracking-widest">Tepat Waktu</p>
                         </div>
                         <div class="bg-slate-50 p-6 rounded-2xl">
                             <h4 class="text-2xl font-black text-teal-600">Premium</h4>
-                            <p class="text-[10px] font-bold uppercase text-gray-400">Quality Control</p>
+                            <p class="text-[10px] font-bold uppercase text-gray-400 tracking-widest">Quality Control</p>
                         </div>
                     </div>
                 </div>
@@ -259,8 +333,8 @@
                 <div class="bg-white rounded-[3rem] shadow-2xl overflow-hidden flex flex-col md:flex-row">
                     <div class="md:w-1/3 bg-[#2e0249] text-white p-12 flex flex-col justify-between">
                         <div>
-                            <h3 class="text-3xl font-black mb-10 font-brand italic">HUBUNGI<br>ADMIN</h3>
-                            <div class="space-y-10 text-sm">
+                            <h3 class="text-3xl font-black mb-10 font-brand italic uppercase">HUBUNGI<br>ADMIN</h3>
+                            <div class="space-y-10 text-xs">
                                 <div class="flex gap-4 items-start">
                                     <i class="fas fa-location-arrow text-orange-500 mt-1"></i>
                                     <p class="opacity-80 leading-relaxed font-medium">Jl. Garmen Raya No. 99, Kawasan Industri, Jakarta Timur</p>
@@ -291,7 +365,7 @@
                                 <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Pertanyaan Anda</label>
                                 <textarea id="c-msg" rows="5" placeholder="Tuliskan detail pertanyaan atau konsultasi desain Anda di sini..." class="w-full p-4 bg-slate-50 rounded-xl outline-none focus:ring-2 focus:ring-teal-600 border-none transition"></textarea>
                             </div>
-                            <button onclick="contactViaWA()" class="bg-orange-500 hover:bg-[#2e0249] text-white px-10 py-5 rounded-2xl font-black transition shadow-xl w-full text-lg">KIRIM KE WHATSAPP</button>
+                            <button onclick="contactViaWA()" class="bg-orange-500 hover:bg-[#2e0249] text-white px-10 py-5 rounded-2xl font-black transition shadow-xl w-full text-lg uppercase italic">KIRIM KE WHATSAPP</button>
                         </div>
                     </div>
                 </div>
@@ -304,11 +378,11 @@
         <div class="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
             <div class="md:col-span-2">
                 <span class="text-3xl font-black font-brand mb-8 block tracking-tighter">KEDAI<span class="text-orange-500">JAHIT</span></span>
-                <p class="text-gray-400 max-w-sm leading-loose">Solusi manufaktur pakaian terintegrasi. Kami melayani desain, pengadaan bahan, hingga pengiriman ke seluruh Indonesia dengan kualitas terjamin.</p>
+                <p class="text-gray-400 max-w-sm leading-loose text-sm">Solusi manufaktur pakaian terintegrasi. Kami melayani desain, pengadaan bahan, hingga pengiriman ke seluruh Indonesia dengan kualitas terjamin.</p>
             </div>
             <div>
                 <h4 class="font-bold mb-8 uppercase tracking-[0.2em] text-teal-400 text-xs">Navigasi</h4>
-                <ul class="space-y-4 text-gray-400 text-sm font-medium">
+                <ul class="space-y-4 text-gray-400 text-xs font-bold uppercase">
                     <li><a onclick="showPage('home')" class="cursor-pointer hover:text-orange-500">Beranda</a></li>
                     <li><a onclick="showPage('categories')" class="cursor-pointer hover:text-orange-500">Produk</a></li>
                     <li><a onclick="showPage('about')" class="cursor-pointer hover:text-orange-500">Tentang Kami</a></li>
@@ -317,11 +391,11 @@
             </div>
             <div>
                 <h4 class="font-bold mb-8 uppercase tracking-[0.2em] text-teal-400 text-xs">Pesan</h4>
-                <p class="text-gray-400 text-sm mb-6 leading-loose">Dapatkan penawaran harga terbaik untuk partai besar.</p>
-                <button onclick="showPage('contact')" class="bg-white text-[#2e0249] px-6 py-3 rounded-xl font-bold text-xs uppercase hover:bg-orange-500 hover:text-white transition">Konsultasi Sekarang</button>
+                <p class="text-gray-400 text-xs mb-6 leading-loose">Dapatkan penawaran harga terbaik untuk partai besar.</p>
+                <button onclick="showPage('contact')" class="bg-white text-[#2e0249] px-6 py-3 rounded-xl font-bold text-[10px] uppercase hover:bg-orange-500 hover:text-white transition">Konsultasi Sekarang</button>
             </div>
         </div>
-        <div class="text-center pt-8 border-t border-white/5 text-[10px] text-gray-600 font-bold uppercase tracking-widest">
+        <div class="text-center pt-8 border-t border-white/5 text-[9px] text-gray-600 font-bold uppercase tracking-widest">
             &copy; 2024 KedaiJahit Official. Dibuat dengan Dedikasi Tinggi.
         </div>
     </footer>
@@ -349,7 +423,6 @@
     <script>
         const WHATSAPP_NUMBER = "6281290001234";
 
-        // Database Produk (Simulasi kategori ke produk)
         const PRODUCT_DB = {
             'Kaos & Polo': [
                 { id: 1, title: 'T-Shirt Cotton Combed', img: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=500' },
@@ -371,12 +444,10 @@
             ]
         };
 
-        // Navigation Engine
         function showPage(pageId) {
             document.querySelectorAll('.page-section').forEach(p => p.classList.remove('active'));
             document.getElementById('page-' + pageId).classList.add('active');
             
-            // Header Links Update
             document.querySelectorAll('nav a').forEach(a => a.classList.remove('nav-active'));
             const activeNav = document.getElementById('nav-' + (pageId === 'product-list' || pageId === 'detail' ? 'categories' : pageId));
             if(activeNav) activeNav.classList.add('nav-active');
@@ -384,7 +455,6 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // 1. Tampilkan List Produk Berdasarkan Kategori
         function showProductList(categoryName) {
             const grid = document.getElementById('product-grid');
             const title = document.getElementById('list-category-title');
@@ -408,14 +478,12 @@
             showPage('product-list');
         }
 
-        // 2. Tampilkan Halaman Detail & Form Order
         function showProductDetail(title, img) {
             document.getElementById('d-title').innerText = title;
             document.getElementById('d-img').src = img;
             showPage('detail');
         }
 
-        // Sidebar Toggle
         function toggleSidebar() {
             const sb = document.getElementById('sidebar');
             const ov = document.getElementById('side-overlay');
@@ -432,7 +500,6 @@
             }
         }
 
-        // WhatsApp Functions
         function orderViaWA() {
             const product = document.getElementById('d-title').innerText;
             const name = document.getElementById('o-name').value;
