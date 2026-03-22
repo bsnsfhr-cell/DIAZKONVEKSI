@@ -18,13 +18,19 @@
         body { font-family: 'Poppins', sans-serif; overflow-x: hidden; }
         .font-brand { font-family: 'Montserrat', sans-serif; }
 
-        .page-section { display: none; }
-        .page-section.active { display: block; animation: slideIn 0.4s ease-out; }
-
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateX(30px); }
-            to { opacity: 1; transform: translateX(0); }
+        /* Global Text Reveal Animation */
+        .reveal-text {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: revealUp 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
         }
+
+        @keyframes revealUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .page-section { display: none; }
+        .page-section.active { display: block; }
 
         .hero-gradient {
             background: linear-gradient(rgba(46, 2, 73, 0.75), rgba(46, 2, 73, 0.95)), url('https://images.unsplash.com/photo-1558603668-6570496b66f8?q=80&w=2000');
@@ -40,6 +46,38 @@
             transition: 0.3s ease;
         }
         .category-card:hover .product-overlay { opacity: 1; }
+
+        /* Animation for Scrolling Showcase */
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-scroll {
+            display: flex;
+            width: max-content;
+            animation: scroll 35s linear infinite;
+        }
+        .animate-scroll:hover { animation-play-state: paused; }
+
+        /* Text Shine Animation */
+        .text-shine {
+            background: linear-gradient(to right, #f97316 20%, #fff 40%, #fff 60%, #f97316 80%);
+            background-size: 200% auto;
+            color: #fff;
+            background-clip: text;
+            text-fill-color: transparent;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 3s linear infinite;
+        }
+        @keyframes shine {
+            to { background-position: 200% center; }
+        }
+
+        /* Delay helper for reveal animations */
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
 
         /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 8px; }
@@ -79,82 +117,125 @@
             <!-- Hero Section -->
             <div class="hero-gradient min-h-[80vh] flex items-center text-white px-6 lg:px-24 py-20">
                 <div class="max-w-3xl">
-                    <span class="bg-orange-500 text-white px-4 py-1 rounded text-[10px] font-bold uppercase tracking-widest mb-6 inline-block">Premium Konveksi</span>
-                    <h1 class="text-4xl lg:text-7xl font-black font-brand mb-6 leading-tight uppercase">SOLUSI <span class="text-teal-400 italic">PRODUKSI</span> TERBAIK & CEPAT</h1>
-                    <p class="text-gray-300 text-base lg:text-lg mb-10 max-w-xl leading-relaxed">Produksi seragam, kaos, dan jaket dengan standar kualitas ekspor. Ribuan klien telah mempercayakan identitas mereka kepada kami.</p>
-                    <div class="flex flex-col sm:flex-row gap-4">
+                    <span class="reveal-text bg-orange-500 text-white px-4 py-1 rounded text-[10px] font-bold uppercase tracking-widest mb-6 inline-block">Premium Konveksi</span>
+                    <h1 class="reveal-text delay-1 text-4xl lg:text-7xl font-black font-brand mb-6 leading-tight uppercase">SOLUSI <span class="text-teal-400 italic">PRODUKSI</span> TERBAIK & CEPAT</h1>
+                    <p class="reveal-text delay-2 text-gray-300 text-base lg:text-lg mb-10 max-w-xl leading-relaxed">Produksi seragam, kaos, dan jaket dengan standar kualitas ekspor. Ribuan klien telah mempercayakan identitas mereka kepada kami.</p>
+                    <div class="reveal-text delay-3 flex flex-col sm:flex-row gap-4">
                         <button onclick="showPage('categories')" class="bg-teal-600 hover:bg-teal-700 text-white px-8 py-4 rounded-full font-bold shadow-xl transition-all uppercase text-sm tracking-wider">Lihat Katalog</button>
                         <button onclick="showPage('contact')" class="border-2 border-white px-8 py-4 rounded-full font-bold hover:bg-white hover:text-[#2e0249] transition-all uppercase text-sm tracking-wider">Hubungi Admin</button>
                     </div>
                 </div>
             </div>
 
-            <!-- Why Choose Us Section (BARU/KEMBALI) -->
+            <!-- Mengapa Harus KedaiJahit Section -->
             <div class="py-24 container mx-auto px-6">
-                <div class="flex flex-col lg:flex-row gap-16 items-center">
-                    <div class="lg:w-1/2">
-                        <span class="text-orange-500 font-bold uppercase tracking-[0.3em] text-xs">Keunggulan Kami</span>
-                        <h2 class="text-4xl font-black text-[#2e0249] font-brand mt-4 mb-8 leading-tight">MENGAPA HARUS <br><span class="text-teal-600">KEDAIJAHIT?</span></h2>
-                        <div class="space-y-8">
-                            <div class="flex gap-6">
-                                <div class="w-14 h-14 bg-slate-100 rounded-2xl flex items-center justify-center shrink-0 text-orange-500 text-xl">
-                                    <i class="fas fa-gem"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-[#2e0249] uppercase text-sm mb-2">Bahan Premium</h4>
-                                    <p class="text-gray-500 text-sm leading-relaxed">Kami hanya menggunakan material pilihan terbaik mulai dari Cotton Combed hingga bahan Drill berkualitas tinggi.</p>
-                                </div>
-                            </div>
-                            <div class="flex gap-6">
-                                <div class="w-14 h-14 bg-slate-100 rounded-2xl flex items-center justify-center shrink-0 text-teal-600 text-xl">
-                                    <i class="fas fa-clock"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-[#2e0249] uppercase text-sm mb-2">Pengerjaan Tepat Waktu</h4>
-                                    <p class="text-gray-500 text-sm leading-relaxed">Sistem manajemen produksi modern memastikan pesanan Anda selesai sesuai jadwal yang disepakati.</p>
-                                </div>
-                            </div>
-                            <div class="flex gap-6">
-                                <div class="w-14 h-14 bg-slate-100 rounded-2xl flex items-center justify-center shrink-0 text-purple-600 text-xl">
-                                    <i class="fas fa-shield-alt"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-[#2e0249] uppercase text-sm mb-2">Garansi Kualitas</h4>
-                                    <p class="text-gray-500 text-sm leading-relaxed">Jika ada cacat produksi, kami siap bertanggung jawab penuh demi kepuasan pelanggan setia kami.</p>
-                                </div>
-                            </div>
+                <div class="text-center mb-16">
+                    <span class="reveal-text text-orange-500 font-bold uppercase tracking-[0.3em] text-xs">Keunggulan Kami</span>
+                    <h2 class="reveal-text delay-1 text-4xl font-black text-[#2e0249] font-brand mt-4 uppercase">MENGAPA HARUS <span class="text-teal-600 italic">KEDAIJAHIT?</span></h2>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                    <div class="reveal-text delay-1 bg-slate-50 p-10 rounded-[2rem] hover:shadow-2xl transition duration-500 group">
+                        <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mb-6 text-orange-500 text-2xl shadow-sm group-hover:bg-orange-500 group-hover:text-white transition">
+                            <i class="fas fa-gem"></i>
                         </div>
+                        <h4 class="font-black text-[#2e0249] uppercase text-sm mb-4 tracking-tighter">Bahan Premium</h4>
+                        <p class="text-gray-500 text-sm leading-relaxed">Kami hanya menggunakan material pilihan terbaik mulai dari Cotton Combed hingga bahan Drill berkualitas tinggi.</p>
                     </div>
-                    <div class="lg:w-1/2 grid grid-cols-2 gap-4">
-                        <img src="https://images.unsplash.com/photo-1558603668-6570496b66f8?q=80&w=600" class="rounded-3xl shadow-xl mt-12">
-                        <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=600" class="rounded-3xl shadow-xl">
+
+                    <div class="reveal-text delay-2 bg-slate-50 p-10 rounded-[2rem] hover:shadow-2xl transition duration-500 group">
+                        <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mb-6 text-teal-600 text-2xl shadow-sm group-hover:bg-teal-600 group-hover:text-white transition">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h4 class="font-black text-[#2e0249] uppercase text-sm mb-4 tracking-tighter">Pengerjaan Tepat Waktu</h4>
+                        <p class="text-gray-500 text-sm leading-relaxed">Sistem manajemen produksi modern memastikan pesanan Anda selesai sesuai jadwal yang disepakati.</p>
+                    </div>
+
+                    <div class="reveal-text delay-3 bg-slate-50 p-10 rounded-[2rem] hover:shadow-2xl transition duration-500 group">
+                        <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mb-6 text-purple-600 text-2xl shadow-sm group-hover:bg-purple-600 group-hover:text-white transition">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h4 class="font-black text-[#2e0249] uppercase text-sm mb-4 tracking-tighter">Garansi Kualitas</h4>
+                        <p class="text-gray-500 text-sm leading-relaxed">Jika ada cacat produksi, kami siap bertanggung jawab penuh demi kepuasan pelanggan setia kami.</p>
                     </div>
                 </div>
             </div>
 
-            <!-- How We Work Section (BARU/KEMBALI) -->
+            <!-- Auto Scrolling Showcase Gallery -->
+            <div class="py-12 bg-[#2e0249] overflow-hidden relative">
+                <div class="absolute inset-0 bg-black/10 z-10 pointer-events-none"></div>
+                <div class="container mx-auto px-6 mb-10 relative z-20 flex justify-between items-end">
+                    <div>
+                        <h3 class="reveal-text text-white font-brand font-black text-2xl italic uppercase tracking-tighter text-shine">PILIHAN TERBAIK</h3>
+                        <p class="reveal-text delay-1 text-teal-400 text-[10px] font-bold tracking-[0.3em] uppercase mt-2">Ketuk Gambar Untuk Melihat Katalog</p>
+                    </div>
+                </div>
+                
+                <div class="animate-scroll gap-6 px-6">
+                    <!-- Images mapped to Categories instead of direct detail -->
+                    <div class="cursor-pointer group relative" onclick="showProductList('Kaos & Polo')">
+                        <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=400" class="w-[280px] h-[380px] object-cover rounded-3xl transition duration-500 group-hover:brightness-75 group-hover:scale-[1.02]">
+                        <div class="absolute bottom-6 left-6 opacity-0 group-hover:opacity-100 transition-opacity text-white">
+                            <p class="font-black text-xs uppercase italic tracking-widest">Lihat Katalog Kaos</p>
+                        </div>
+                    </div>
+                    <div class="cursor-pointer group relative" onclick="showProductList('Jaket & Hoodie')">
+                        <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?q=80&w=400" class="w-[280px] h-[380px] object-cover rounded-3xl transition duration-500 group-hover:brightness-75 group-hover:scale-[1.02]">
+                        <div class="absolute bottom-6 left-6 opacity-0 group-hover:opacity-100 transition-opacity text-white">
+                            <p class="font-black text-xs uppercase italic tracking-widest">Lihat Katalog Jaket</p>
+                        </div>
+                    </div>
+                    <div class="cursor-pointer group relative" onclick="showProductList('Kemeja & Seragam')">
+                        <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=400" class="w-[280px] h-[380px] object-cover rounded-3xl transition duration-500 group-hover:brightness-75 group-hover:scale-[1.02]">
+                        <div class="absolute bottom-6 left-6 opacity-0 group-hover:opacity-100 transition-opacity text-white">
+                            <p class="font-black text-xs uppercase italic tracking-widest">Lihat Katalog Kemeja</p>
+                        </div>
+                    </div>
+                    <div class="cursor-pointer group relative" onclick="showProductList('Kaos & Polo')">
+                        <img src="https://images.unsplash.com/photo-1581655353564-df123a1eb820?q=80&w=400" class="w-[280px] h-[380px] object-cover rounded-3xl transition duration-500 group-hover:brightness-75 group-hover:scale-[1.02]">
+                        <div class="absolute bottom-6 left-6 opacity-0 group-hover:opacity-100 transition-opacity text-white">
+                            <p class="font-black text-xs uppercase italic tracking-widest">Lihat Katalog Polo</p>
+                        </div>
+                    </div>
+                    <div class="cursor-pointer group relative" onclick="showProductList('Jaket & Hoodie')">
+                        <img src="https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?q=80&w=400" class="w-[280px] h-[380px] object-cover rounded-3xl transition duration-500 group-hover:brightness-75 group-hover:scale-[1.02]">
+                        <div class="absolute bottom-6 left-6 opacity-0 group-hover:opacity-100 transition-opacity text-white">
+                            <p class="font-black text-xs uppercase italic tracking-widest">Lihat Katalog Varsity</p>
+                        </div>
+                    </div>
+                    <!-- Duplicates for scrolling loop -->
+                    <div class="cursor-pointer group relative" onclick="showProductList('Kaos & Polo')">
+                        <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=400" class="w-[280px] h-[380px] object-cover rounded-3xl">
+                    </div>
+                    <div class="cursor-pointer group relative" onclick="showProductList('Jaket & Hoodie')">
+                        <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?q=80&w=400" class="w-[280px] h-[380px] object-cover rounded-3xl">
+                    </div>
+                </div>
+            </div>
+
+            <!-- How We Work Section -->
             <div class="py-24 bg-slate-50">
                 <div class="container mx-auto px-6 text-center mb-16">
-                    <span class="text-orange-500 font-bold uppercase tracking-[0.3em] text-xs">Alur Kerja</span>
-                    <h2 class="text-4xl font-black text-[#2e0249] font-brand mt-4 uppercase italic">PROSES MUDAH</h2>
+                    <span class="reveal-text text-orange-500 font-bold uppercase tracking-[0.3em] text-xs">Alur Kerja</span>
+                    <h2 class="reveal-text delay-1 text-4xl font-black text-[#2e0249] font-brand mt-4 uppercase italic">PROSES MUDAH</h2>
                 </div>
                 <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 text-center">
-                    <div class="relative">
+                    <div class="reveal-text delay-1 relative">
                         <div class="w-16 h-16 bg-white rounded-full shadow-lg flex items-center justify-center mx-auto mb-6 text-teal-600 font-black text-xl">01</div>
                         <h4 class="font-bold text-[#2e0249] uppercase text-xs mb-3 tracking-widest">Konsultasi</h4>
                         <p class="text-gray-400 text-xs leading-loose">Diskusikan desain, bahan, dan jumlah pesanan dengan admin.</p>
                     </div>
-                    <div class="relative">
+                    <div class="reveal-text delay-2 relative">
                         <div class="w-16 h-16 bg-white rounded-full shadow-lg flex items-center justify-center mx-auto mb-6 text-teal-600 font-black text-xl">02</div>
                         <h4 class="font-bold text-[#2e0249] uppercase text-xs mb-3 tracking-widest">Down Payment</h4>
                         <p class="text-gray-400 text-xs leading-loose">Pembayaran DP 50% untuk mulai masuk antrian produksi.</p>
                     </div>
-                    <div class="relative">
+                    <div class="reveal-text delay-3 relative">
                         <div class="w-16 h-16 bg-white rounded-full shadow-lg flex items-center justify-center mx-auto mb-6 text-teal-600 font-black text-xl">03</div>
                         <h4 class="font-bold text-[#2e0249] uppercase text-xs mb-3 tracking-widest">Produksi</h4>
                         <p class="text-gray-400 text-xs leading-loose">Pesanan dijahit dan disablon/bordir oleh tenaga ahli kami.</p>
                     </div>
-                    <div class="relative">
+                    <div class="reveal-text delay-3 relative">
                         <div class="w-16 h-16 bg-white rounded-full shadow-lg flex items-center justify-center mx-auto mb-6 text-teal-600 font-black text-xl">04</div>
                         <h4 class="font-bold text-[#2e0249] uppercase text-xs mb-3 tracking-widest">Pengiriman</h4>
                         <p class="text-gray-400 text-xs leading-loose">Pelunasan dilakukan dan pesanan siap dikirim ke lokasi Anda.</p>
@@ -162,21 +243,22 @@
                 </div>
             </div>
 
+            <!-- Stats Bar -->
             <div class="py-12 bg-white border-b border-slate-100">
                 <div class="container mx-auto px-6 grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
-                    <div>
+                    <div class="reveal-text delay-1">
                         <h3 class="text-4xl font-black text-[#2e0249]">10+</h3>
                         <p class="text-gray-400 text-[10px] font-bold uppercase tracking-widest mt-2">Tahun Pengalaman</p>
                     </div>
-                    <div>
+                    <div class="reveal-text delay-2">
                         <h3 class="text-4xl font-black text-[#2e0249]">500k+</h3>
                         <p class="text-gray-400 text-[10px] font-bold uppercase tracking-widest mt-2">Produk Terjual</p>
                     </div>
-                    <div>
+                    <div class="reveal-text delay-3">
                         <h3 class="text-4xl font-black text-[#2e0249]">1k+</h3>
                         <p class="text-gray-400 text-[10px] font-bold uppercase tracking-widest mt-2">Klien Instansi</p>
                     </div>
-                    <div>
+                    <div class="reveal-text delay-3">
                         <h3 class="text-4xl font-black text-[#2e0249]">24h</h3>
                         <p class="text-gray-400 text-[10px] font-bold uppercase tracking-widest mt-2">Produksi Cepat</p>
                     </div>
@@ -184,54 +266,39 @@
             </div>
         </section>
 
-        <!-- 2. CATEGORIES PAGE (Menu Utama Produk) -->
+        <!-- 2. CATEGORIES PAGE -->
         <section id="page-categories" class="page-section py-20 container mx-auto px-6">
             <div class="text-center mb-16">
-                <span class="text-orange-500 font-bold uppercase tracking-[0.3em] text-xs">Pilihan Kategori</span>
-                <h2 class="text-4xl font-black text-[#2e0249] font-brand mt-2 uppercase">Layanan Kami</h2>
+                <span class="reveal-text text-orange-500 font-bold uppercase tracking-[0.3em] text-xs">Pilihan Kategori</span>
+                <h2 class="reveal-text delay-1 text-4xl font-black text-[#2e0249] font-brand mt-2 uppercase">Layanan Kami</h2>
                 <div class="w-16 h-1 bg-teal-600 mx-auto mt-4"></div>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Kategori: Kaos -->
-                <div class="category-card relative rounded-3xl overflow-hidden shadow-2xl h-[400px] cursor-pointer group" onclick="showProductList('Kaos & Polo')">
+                <div class="reveal-text delay-1 category-card relative rounded-3xl overflow-hidden shadow-2xl h-[400px] cursor-pointer group" onclick="showProductList('Kaos & Polo')">
                     <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=800" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
                     <div class="product-overlay absolute inset-0 flex flex-col justify-center items-center text-center p-6">
                         <h3 class="text-white text-2xl font-black mb-2 font-brand uppercase tracking-tighter">KAOS & POLO</h3>
                         <p class="text-white/80 text-sm mb-6">T-shirt, Wangky, Polo Shirt</p>
                         <span class="bg-white text-teal-600 px-6 py-2 rounded-full font-bold text-xs uppercase">Buka Kategori</span>
                     </div>
-                    <div class="absolute bottom-0 left-0 w-full bg-white/95 backdrop-blur p-5 flex justify-between items-center">
-                        <span class="font-black text-[#2e0249] text-sm uppercase italic">Koleksi Kaos</span>
-                        <i class="fas fa-chevron-right text-orange-500"></i>
-                    </div>
                 </div>
 
-                <!-- Kategori: Kemeja -->
-                <div class="category-card relative rounded-3xl overflow-hidden shadow-2xl h-[400px] cursor-pointer group" onclick="showProductList('Kemeja & Seragam')">
+                <div class="reveal-text delay-2 category-card relative rounded-3xl overflow-hidden shadow-2xl h-[400px] cursor-pointer group" onclick="showProductList('Kemeja & Seragam')">
                     <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=800" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
                     <div class="product-overlay absolute inset-0 flex flex-col justify-center items-center text-center p-6">
                         <h3 class="text-white text-2xl font-black mb-2 font-brand uppercase tracking-tighter">KEMEJA & PDL</h3>
                         <p class="text-white/80 text-sm mb-6">Seragam Kantor, PDH, Wearpack</p>
                         <span class="bg-white text-teal-600 px-6 py-2 rounded-full font-bold text-xs uppercase">Buka Kategori</span>
                     </div>
-                    <div class="absolute bottom-0 left-0 w-full bg-white/95 backdrop-blur p-5 flex justify-between items-center">
-                        <span class="font-black text-[#2e0249] text-sm uppercase italic">Koleksi Seragam</span>
-                        <i class="fas fa-chevron-right text-orange-500"></i>
-                    </div>
                 </div>
 
-                <!-- Kategori: Jaket -->
-                <div class="category-card relative rounded-3xl overflow-hidden shadow-2xl h-[400px] cursor-pointer group" onclick="showProductList('Jaket & Hoodie')">
+                <div class="reveal-text delay-3 category-card relative rounded-3xl overflow-hidden shadow-2xl h-[400px] cursor-pointer group" onclick="showProductList('Jaket & Hoodie')">
                     <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?q=80&w=800" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
                     <div class="product-overlay absolute inset-0 flex flex-col justify-center items-center text-center p-6">
                         <h3 class="text-white text-2xl font-black mb-2 font-brand uppercase tracking-tighter">JAKET & OUTER</h3>
                         <p class="text-white/80 text-sm mb-6">Hoodie, Bomber, Varsity</p>
                         <span class="bg-white text-teal-600 px-6 py-2 rounded-full font-bold text-xs uppercase">Buka Kategori</span>
-                    </div>
-                    <div class="absolute bottom-0 left-0 w-full bg-white/95 backdrop-blur p-5 flex justify-between items-center">
-                        <span class="font-black text-[#2e0249] text-sm uppercase italic">Koleksi Jaket</span>
-                        <i class="fas fa-chevron-right text-orange-500"></i>
                     </div>
                 </div>
             </div>
@@ -243,15 +310,15 @@
                 <button onclick="showPage('categories')" class="text-gray-400 hover:text-orange-500 mb-8 font-bold uppercase text-[10px] tracking-widest flex items-center gap-2">
                     <i class="fas fa-arrow-left"></i> Kembali ke Kategori
                 </button>
-                <h2 id="list-category-title" class="text-3xl font-black text-[#2e0249] font-brand mb-12 uppercase italic">DAFTAR PRODUK</h2>
+                <h2 id="list-category-title" class="reveal-text text-3xl font-black text-[#2e0249] font-brand mb-12 uppercase italic">DAFTAR PRODUK</h2>
                 
                 <div id="product-grid" class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                    <!-- JS akan mengisi ini -->
+                    <!-- JS Fill -->
                 </div>
             </div>
         </section>
 
-        <!-- 4. PRODUCT DETAIL & ORDER PAGE -->
+        <!-- 4. PRODUCT DETAIL PAGE -->
         <section id="page-detail" class="page-section py-16">
             <div class="container mx-auto px-6 max-w-6xl">
                 <button onclick="window.history.back()" class="text-gray-400 hover:text-orange-500 mb-8 font-bold uppercase text-[10px] tracking-widest flex items-center gap-2">
@@ -259,21 +326,18 @@
                 </button>
                 
                 <div class="flex flex-col lg:flex-row gap-12 lg:gap-20">
-                    <!-- Image Area -->
                     <div class="lg:w-1/2">
-                        <div class="sticky top-24">
+                        <div class="sticky top-24 reveal-text">
                             <img id="d-img" src="" class="w-full aspect-[4/5] object-cover rounded-[2.5rem] shadow-2xl border-4 border-white">
                         </div>
                     </div>
                     
-                    <!-- Content Area -->
                     <div class="lg:w-1/2">
-                        <span class="text-teal-600 font-bold uppercase text-xs tracking-widest">Detail Pesanan</span>
-                        <h1 id="d-title" class="text-4xl lg:text-5xl font-black text-[#2e0249] font-brand mt-4 mb-6 uppercase leading-tight italic">NAMA PRODUK</h1>
-                        <p class="text-gray-500 leading-loose mb-10">Kami menggunakan bahan premium dengan jahitan rapi standar distro/ekspor. Silakan isi form di bawah untuk order via WhatsApp.</p>
+                        <span class="reveal-text text-teal-600 font-bold uppercase text-xs tracking-widest">Detail Pesanan</span>
+                        <h1 id="d-title" class="reveal-text delay-1 text-4xl lg:text-5xl font-black text-[#2e0249] font-brand mt-4 mb-6 uppercase leading-tight italic">NAMA PRODUK</h1>
+                        <p class="reveal-text delay-2 text-gray-500 leading-loose mb-10">Kami menggunakan bahan premium dengan jahitan rapi standar distro/ekspor. Silakan isi form di bawah untuk order via WhatsApp.</p>
                         
-                        <!-- Order Form -->
-                        <div class="bg-white p-8 lg:p-10 rounded-[2rem] shadow-2xl border border-slate-100">
+                        <div class="reveal-text delay-3 bg-white p-8 lg:p-10 rounded-[2rem] shadow-2xl border border-slate-100">
                             <h3 class="font-black text-xl text-[#2e0249] mb-8 uppercase font-brand border-b pb-4 tracking-tighter">Formulir Pesanan</h3>
                             <div class="space-y-6">
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -303,25 +367,14 @@
         <!-- 5. ABOUT PAGE -->
         <section id="page-about" class="page-section py-20 container mx-auto px-6">
             <div class="flex flex-col lg:flex-row gap-16 items-center">
-                <div class="lg:w-1/2 relative">
+                <div class="lg:w-1/2 relative reveal-text">
                     <img src="https://images.unsplash.com/photo-1551711234-754673895e69?q=80&w=800" class="rounded-[3rem] shadow-2xl relative z-10">
                     <div class="absolute -bottom-6 -right-6 w-40 h-40 bg-orange-500 rounded-full -z-0 opacity-20 animate-pulse"></div>
                 </div>
                 <div class="lg:w-1/2">
-                    <span class="text-orange-500 font-bold uppercase tracking-[0.3em] text-xs">Siapa Kami</span>
-                    <h2 class="text-4xl lg:text-5xl font-black text-[#2e0249] font-brand mt-4 mb-8 leading-tight uppercase">MENGUTAMAKAN <span class="text-teal-600 italic">KUALITAS</span> & KECEPATAN</h2>
-                    <p class="text-gray-600 text-lg leading-loose mb-8 italic">"Kami bukan sekadar tukang jahit, kami adalah mitra identitas Anda."</p>
-                    <p class="text-gray-500 leading-loose mb-10 text-sm">Berdiri sejak 2014, KedaiJahit telah memproduksi lebih dari satu juta helai pakaian untuk berbagai kebutuhan perusahaan, komunitas, dan brand lokal di seluruh Indonesia.</p>
-                    <div class="grid grid-cols-2 gap-8">
-                        <div class="bg-slate-50 p-6 rounded-2xl">
-                            <h4 class="text-2xl font-black text-orange-500">100%</h4>
-                            <p class="text-[10px] font-bold uppercase text-gray-400 tracking-widest">Tepat Waktu</p>
-                        </div>
-                        <div class="bg-slate-50 p-6 rounded-2xl">
-                            <h4 class="text-2xl font-black text-teal-600">Premium</h4>
-                            <p class="text-[10px] font-bold uppercase text-gray-400 tracking-widest">Quality Control</p>
-                        </div>
-                    </div>
+                    <span class="reveal-text text-orange-500 font-bold uppercase tracking-[0.3em] text-xs">Siapa Kami</span>
+                    <h2 class="reveal-text delay-1 text-4xl lg:text-5xl font-black text-[#2e0249] font-brand mt-4 mb-8 leading-tight uppercase">MENGUTAMAKAN <span class="text-teal-600 italic">KUALITAS</span> & KECEPATAN</h2>
+                    <p class="reveal-text delay-2 text-gray-500 leading-loose mb-10 text-sm">Berdiri sejak 2014, KedaiJahit telah memproduksi lebih dari satu juta helai pakaian untuk berbagai kebutuhan instansi dan brand lokal.</p>
                 </div>
             </div>
         </section>
@@ -329,42 +382,22 @@
         <!-- 6. CONTACT PAGE -->
         <section id="page-contact" class="page-section py-20 bg-slate-100">
             <div class="container mx-auto px-6 max-w-5xl">
-                <div class="bg-white rounded-[3rem] shadow-2xl overflow-hidden flex flex-col md:flex-row">
-                    <div class="md:w-1/3 bg-[#2e0249] text-white p-12 flex flex-col justify-between">
-                        <div>
-                            <h3 class="text-3xl font-black mb-10 font-brand italic uppercase">HUBUNGI<br>ADMIN</h3>
-                            <div class="space-y-10 text-xs">
-                                <div class="flex gap-4 items-start">
-                                    <i class="fas fa-location-arrow text-orange-500 mt-1"></i>
-                                    <p class="opacity-80 leading-relaxed font-medium">Jl. Garmen Raya No. 99, Kawasan Industri, Jakarta Timur</p>
-                                </div>
-                                <div class="flex gap-4 items-center">
-                                    <i class="fas fa-phone-alt text-orange-500"></i>
-                                    <p class="opacity-80 font-medium">+62 812 9000 1234</p>
-                                </div>
-                                <div class="flex gap-4 items-center">
-                                    <i class="fas fa-clock text-orange-500"></i>
-                                    <p class="opacity-80 font-medium">08:00 - 17:00 (Sen-Sab)</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="flex gap-4 mt-12">
-                            <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-orange-500 transition"><i class="fab fa-instagram"></i></a>
-                            <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-orange-500 transition"><i class="fab fa-tiktok"></i></a>
-                        </div>
+                <div class="reveal-text bg-white rounded-[3rem] shadow-2xl overflow-hidden flex flex-col md:flex-row">
+                    <div class="md:w-1/3 bg-[#2e0249] text-white p-12">
+                        <h3 class="text-3xl font-black mb-10 font-brand italic uppercase">HUBUNGI<br>ADMIN</h3>
                     </div>
-                    <div class="md:w-2/3 p-12 lg:p-16">
-                        <h4 class="text-2xl font-black mb-10 text-[#2e0249] font-brand uppercase tracking-tight">Kirim Pesan Cepat</h4>
+                    <div class="md:w-2/3 p-12">
+                        <h4 class="reveal-text delay-1 text-2xl font-black mb-10 text-[#2e0249] font-brand uppercase tracking-tight">Kirim Pesan Cepat</h4>
                         <div class="space-y-6">
-                            <div class="space-y-2">
+                            <div class="reveal-text delay-2 space-y-2">
                                 <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Nama Lengkap</label>
                                 <input type="text" id="c-name" class="w-full p-4 bg-slate-50 rounded-xl outline-none focus:ring-2 focus:ring-teal-600 border-none transition">
                             </div>
-                            <div class="space-y-2">
+                            <div class="reveal-text delay-3 space-y-2">
                                 <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Pertanyaan Anda</label>
-                                <textarea id="c-msg" rows="5" placeholder="Tuliskan detail pertanyaan atau konsultasi desain Anda di sini..." class="w-full p-4 bg-slate-50 rounded-xl outline-none focus:ring-2 focus:ring-teal-600 border-none transition"></textarea>
+                                <textarea id="c-msg" rows="5" placeholder="Tuliskan detail pertanyaan Anda..." class="w-full p-4 bg-slate-50 rounded-xl outline-none focus:ring-2 focus:ring-teal-600 border-none transition"></textarea>
                             </div>
-                            <button onclick="contactViaWA()" class="bg-orange-500 hover:bg-[#2e0249] text-white px-10 py-5 rounded-2xl font-black transition shadow-xl w-full text-lg uppercase italic">KIRIM KE WHATSAPP</button>
+                            <button onclick="contactViaWA()" class="reveal-text delay-3 bg-orange-500 hover:bg-[#2e0249] text-white px-10 py-5 rounded-2xl font-black transition shadow-xl w-full text-lg uppercase italic">KIRIM KE WHATSAPP</button>
                         </div>
                     </div>
                 </div>
@@ -376,47 +409,33 @@
     <footer class="bg-[#2e0249] text-white pt-24 pb-12 px-6">
         <div class="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
             <div class="md:col-span-2">
-                <span class="text-3xl font-black font-brand mb-8 block tracking-tighter">KEDAI<span class="text-orange-500">JAHIT</span></span>
-                <p class="text-gray-400 max-w-sm leading-loose text-sm">Solusi manufaktur pakaian terintegrasi. Kami melayani desain, pengadaan bahan, hingga pengiriman ke seluruh Indonesia dengan kualitas terjamin.</p>
+                <span class="reveal-text text-3xl font-black font-brand mb-8 block tracking-tighter">KEDAI<span class="text-orange-500">JAHIT</span></span>
+                <p class="reveal-text delay-1 text-gray-400 max-w-sm leading-loose text-sm">Solusi manufaktur pakaian terintegrasi dengan kualitas terjamin.</p>
             </div>
             <div>
-                <h4 class="font-bold mb-8 uppercase tracking-[0.2em] text-teal-400 text-xs">Navigasi</h4>
+                <h4 class="reveal-text font-bold mb-8 uppercase tracking-[0.2em] text-teal-400 text-xs">Navigasi</h4>
                 <ul class="space-y-4 text-gray-400 text-xs font-bold uppercase">
-                    <li><a onclick="showPage('home')" class="cursor-pointer hover:text-orange-500">Beranda</a></li>
-                    <li><a onclick="showPage('categories')" class="cursor-pointer hover:text-orange-500">Produk</a></li>
-                    <li><a onclick="showPage('about')" class="cursor-pointer hover:text-orange-500">Tentang Kami</a></li>
-                    <li><a onclick="showPage('contact')" class="cursor-pointer hover:text-orange-500">Kontak</a></li>
+                    <li><a onclick="showPage('home')" class="cursor-pointer hover:text-orange-500 transition">Beranda</a></li>
+                    <li><a onclick="showPage('categories')" class="cursor-pointer hover:text-orange-500 transition">Produk</a></li>
+                    <li><a onclick="showPage('about')" class="cursor-pointer hover:text-orange-500 transition">Tentang Kami</a></li>
                 </ul>
-            </div>
-            <div>
-                <h4 class="font-bold mb-8 uppercase tracking-[0.2em] text-teal-400 text-xs">Pesan</h4>
-                <p class="text-gray-400 text-xs mb-6 leading-loose">Dapatkan penawaran harga terbaik untuk partai besar.</p>
-                <button onclick="showPage('contact')" class="bg-white text-[#2e0249] px-6 py-3 rounded-xl font-bold text-[10px] uppercase hover:bg-orange-500 hover:text-white transition">Konsultasi Sekarang</button>
             </div>
         </div>
         <div class="text-center pt-8 border-t border-white/5 text-[9px] text-gray-600 font-bold uppercase tracking-widest">
-            &copy; 2024 KedaiJahit Official. Dibuat dengan Dedikasi Tinggi.
+            &copy; 2024 KedaiJahit Official.
         </div>
     </footer>
 
     <!-- Sidebar Menu Mobile -->
     <div id="side-overlay" onclick="toggleSidebar()" class="fixed inset-0 bg-black/70 z-[100] hidden backdrop-blur-md"></div>
     <div id="sidebar" class="fixed top-0 right-0 h-full w-80 bg-white z-[110] translate-x-full transition-transform duration-500 p-12 flex flex-col shadow-2xl">
-        <button onclick="toggleSidebar()" class="self-end text-3xl text-[#2e0249] mb-16 hover:rotate-90 transition duration-300"><i class="fas fa-times"></i></button>
+        <button onclick="toggleSidebar()" class="self-end text-3xl text-[#2e0249] mb-16"><i class="fas fa-times"></i></button>
         <nav class="flex flex-col gap-10 font-black font-brand text-[#2e0249] uppercase italic text-2xl tracking-tighter">
             <a onclick="showPage('home'); toggleSidebar()" class="hover:text-orange-500">Home</a>
             <a onclick="showPage('categories'); toggleSidebar()" class="hover:text-orange-500">Products</a>
             <a onclick="showPage('about'); toggleSidebar()" class="hover:text-orange-500">About Us</a>
             <a onclick="showPage('contact'); toggleSidebar()" class="hover:text-orange-500">Contact</a>
         </nav>
-        <div class="mt-auto pt-10 border-t border-slate-100">
-            <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-4">Social Media</p>
-            <div class="flex gap-4">
-                <a href="#" class="text-[#2e0249] text-xl"><i class="fab fa-instagram"></i></a>
-                <a href="#" class="text-[#2e0249] text-xl"><i class="fab fa-tiktok"></i></a>
-                <a href="#" class="text-[#2e0249] text-xl"><i class="fab fa-whatsapp"></i></a>
-            </div>
-        </div>
     </div>
 
     <script>
@@ -438,10 +457,18 @@
             'Jaket & Hoodie': [
                 { id: 9, title: 'Hoodie Cotton Fleece', img: 'https://images.unsplash.com/photo-1556821840-3a63f95609a7?q=80&w=500' },
                 { id: 10, title: 'Jaket Bomber Taslan', img: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?q=80&w=500' },
-                { id: 11, title: 'Varsity Jacket', img: 'https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?q=80&w=500' },
+                { id: 11, title: 'Varsity Jacket', img: 'https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?q=80&w=400' },
                 { id: 12, title: 'Coach Jacket', img: 'https://images.unsplash.com/photo-1548883354-94bcfe321cbb?q=80&w=500' }
             ]
         };
+
+        function resetAnimations() {
+            document.querySelectorAll('.reveal-text').forEach(el => {
+                el.style.animation = 'none';
+                el.offsetHeight; // trigger reflow
+                el.style.animation = '';
+            });
+        }
 
         function showPage(pageId) {
             document.querySelectorAll('.page-section').forEach(p => p.classList.remove('active'));
@@ -451,6 +478,7 @@
             const activeNav = document.getElementById('nav-' + (pageId === 'product-list' || pageId === 'detail' ? 'categories' : pageId));
             if(activeNav) activeNav.classList.add('nav-active');
 
+            resetAnimations();
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
@@ -461,19 +489,16 @@
             grid.innerHTML = '';
 
             const products = PRODUCT_DB[categoryName];
-            products.forEach(p => {
+            products.forEach((p, index) => {
                 grid.innerHTML += `
-                    <div class="bg-white p-3 rounded-2xl shadow-md cursor-pointer hover:-translate-y-2 transition-transform border border-slate-100" onclick="showProductDetail('${p.title}', '${p.img}')">
+                    <div class="reveal-text bg-white p-3 rounded-2xl shadow-md cursor-pointer hover:-translate-y-2 transition-transform border border-slate-100" 
+                         style="animation-delay: ${index * 0.1}s"
+                         onclick="showProductDetail('${p.title}', '${p.img}')">
                         <img src="${p.img}" class="w-full h-40 lg:h-56 object-cover rounded-xl mb-4">
                         <h4 class="font-bold text-[10px] lg:text-xs text-[#2e0249] uppercase tracking-tight">${p.title}</h4>
-                        <div class="flex justify-between items-center mt-2">
-                            <span class="text-[8px] font-bold text-orange-500">PREMIUM QUALITY</span>
-                            <i class="fas fa-shopping-bag text-teal-600 text-[10px]"></i>
-                        </div>
                     </div>
                 `;
             });
-
             showPage('product-list');
         }
 
@@ -487,7 +512,6 @@
             const sb = document.getElementById('sidebar');
             const ov = document.getElementById('side-overlay');
             const isOpen = sb.classList.contains('translate-x-0');
-
             if(isOpen) {
                 sb.classList.add('translate-x-full');
                 sb.classList.remove('translate-x-0');
@@ -517,12 +541,10 @@
         function contactViaWA() {
             const name = document.getElementById('c-name').value;
             const msg = document.getElementById('c-msg').value;
-
             if(!name || !msg) {
-                alert("Mohon isi Nama dan Pesan pertanyaan Anda.");
+                alert("Mohon isi Nama dan Pesan.");
                 return;
             }
-
             const message = `Halo KedaiJahit! 👋%0A%0ASaya *${name}* ingin konsultasi konveksi:%0A%0A"${msg}"`;
             window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${message}`, '_blank');
         }
